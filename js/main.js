@@ -23,6 +23,9 @@ const CONFIG = {
 
 const WA_LINK = "https://wa.me/" + CONFIG.whatsapp;
 
+// Production domain — used for canonical / structured-data URLs. Update to your real domain.
+const SITE_URL = "https://ofoqalnajah.com";
+
 /* ---------- SVG icon set ---------- */
 const IC = {
   wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.5 0-3-.4-4.3-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3z"/></svg>',
@@ -39,11 +42,11 @@ function headerHTML() {
   const link = (page, key, label) => `<a href="${page}.html" data-nav="${page}" data-i18n="nav.${key}">${label}</a>`;
   return `
   <div class="nav">
-    <a class="brand" href="index.html" aria-label="OFOQ AlNajah — Home">
-      <img src="assets/logo.jpeg" alt="OFOQ AlNajah logo">
+    <a class="brand" href="index.html" data-i18n-aria="a11y.brandHome" aria-label="OfoqAlNajah — Home">
+      <img src="assets/logo-96.png" alt="OfoqAlNajah logo" width="44" height="44">
       <span class="brand-txt"><b data-i18n="brand.name">OFOQ</b><span data-i18n="brand.tag">AlNajah</span></span>
     </a>
-    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+    <nav class="nav-links" id="navLinks" data-i18n-aria="a11y.mainNav" aria-label="Main navigation">
       ${link("index","home","Home")}
       ${link("about","about","About")}
       ${link("services","services","Advisory")}
@@ -53,9 +56,9 @@ function headerHTML() {
       <a class="btn btn-gold menu-cta" href="contact.html" data-i18n="nav.cta">Free Consultation</a>
     </nav>
     <div class="nav-right">
-      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language" data-i18n="lang.label">عربي</button>
+      <button class="lang-toggle" id="langToggle" type="button" data-i18n-aria="a11y.langToggle" aria-label="Switch language" data-i18n="lang.label">عربي</button>
       <a class="btn btn-gold nav-cta" href="contact.html" data-i18n="nav.cta">Free Consultation</a>
-      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="hamburger" id="hamburger" type="button" data-i18n-aria="a11y.menuOpen" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>`;
 }
@@ -72,7 +75,7 @@ function footerHTML() {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/logo.jpeg" alt="OFOQ AlNajah">
+        <img src="assets/logo-96.png" alt="OfoqAlNajah" width="52" height="52" loading="lazy" decoding="async">
         <p data-i18n="footer.about"></p>
         <p class="footer-tag" data-i18n="footer.built"></p>
         <div class="social">
@@ -114,13 +117,20 @@ function t(key, lang) {
   const L = I18N[lang] || I18N.en;
   return (key in L) ? L[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
 }
-function getLang() { return localStorage.getItem("ofoq_lang") || "en"; }
+function getLang() {
+  try {
+    const p = new URLSearchParams(location.search).get("lang");
+    if (p === "ar" || p === "en") { localStorage.setItem("ofoq_lang", p); return p; }
+  } catch (e) {}
+  return localStorage.getItem("ofoq_lang") || "en";
+}
 function setLang(lang) { localStorage.setItem("ofoq_lang", lang); applyLang(lang); }
 
 function applyLang(lang) {
   const html = document.documentElement;
   html.setAttribute("lang", lang);
   html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+  if (lang === "ar") ensureArabicFont();
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     el.innerHTML = t(el.getAttribute("data-i18n"), lang);
@@ -147,7 +157,7 @@ function setActiveNav() {
   if (file === "" || file === "/") file = "index.html";
   const page = file.replace(".html", "");
   document.querySelectorAll(".nav-links a[data-nav]").forEach(a => {
-    if (a.getAttribute("data-nav") === (page || "index")) a.classList.add("active");
+    if (a.getAttribute("data-nav") === (page || "index")) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
   });
 }
 
@@ -165,15 +175,29 @@ function initMobileNav() {
   const burger = document.getElementById("hamburger");
   const links = document.getElementById("navLinks");
   if (!burger || !links) return;
+  const items = () => links.querySelectorAll("a");
   const toggle = (open) => {
     const isOpen = open ?? !links.classList.contains("open");
     links.classList.toggle("open", isOpen);
     burger.classList.toggle("open", isOpen);
     burger.setAttribute("aria-expanded", String(isOpen));
+    burger.setAttribute("aria-label", t(isOpen ? "a11y.menuClose" : "a11y.menuOpen", getLang()));
     document.body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) { requestAnimationFrame(() => { const f = items()[0]; if (f) f.focus(); }); }
+    else if (document.activeElement && links.contains(document.activeElement)) burger.focus();
   };
   burger.addEventListener("click", () => toggle());
-  links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => toggle(false)));
+  items().forEach(a => a.addEventListener("click", () => toggle(false)));
+  document.addEventListener("keydown", (e) => {
+    if (!links.classList.contains("open")) return;
+    if (e.key === "Escape") { toggle(false); return; }
+    if (e.key === "Tab") {
+      const list = items(); if (!list.length) return;
+      const first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
 }
 
 /* ---------- Reveal on scroll ---------- */
@@ -191,11 +215,18 @@ function initReveal() {
 
 /* ---------- FAQ accordion ---------- */
 function initFAQ() {
-  document.querySelectorAll(".faq-q").forEach(btn => {
+  document.querySelectorAll(".faq-item").forEach((item, i) => {
+    const btn = item.querySelector(".faq-q");
+    const ans = item.querySelector(".faq-a");
+    if (!btn || !ans) return;
+    ans.id = ans.id || ("faq-panel-" + i);
+    btn.setAttribute("aria-controls", ans.id);
+    btn.setAttribute("aria-expanded", "false");
+    ans.setAttribute("aria-hidden", "true");
     btn.addEventListener("click", () => {
-      const item = btn.closest(".faq-item");
-      const ans = item.querySelector(".faq-a");
       const open = item.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+      ans.setAttribute("aria-hidden", String(!open));
       ans.style.maxHeight = open ? ans.scrollHeight + "px" : null;
     });
   });
@@ -212,18 +243,24 @@ function initForm() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     msg.className = "form-msg";
+    // Client-side validation (required fields + email format)
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    const lang = getLang();
+    const data = Object.fromEntries(new FormData(form).entries());
     const keyMissing = !CONFIG.web3formsKey || CONFIG.web3formsKey.startsWith("YOUR_");
     if (keyMissing) {
-      msg.classList.add("err");
-      msg.textContent = t("contact.f.err", getLang());
-      window.open(WA_LINK, "_blank");
+      // Fallback until a Web3Forms key is set: hand the enquiry off to WhatsApp, prefilled.
+      const txt = `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "-"}\nInterest: ${data.interest || "-"}\n\n${data.message || ""}`;
+      window.open(WA_LINK + "?text=" + encodeURIComponent(txt), "_blank", "noopener");
+      form.reset();
+      msg.classList.add("ok");
+      msg.textContent = t("contact.f.ok", lang);
       return;
     }
     const origHTML = btn.innerHTML;
     btn.disabled = true;
-    btn.textContent = t("contact.f.sending", getLang());
+    btn.textContent = t("contact.f.sending", lang);
     try {
-      const data = Object.fromEntries(new FormData(form).entries());
       data.access_key = CONFIG.web3formsKey;
       data.subject = "New enquiry — OfoqAlNajah website";
       data.from_name = "OfoqAlNajah Website";
@@ -255,7 +292,8 @@ function initWhatsApp() {
   const a = document.createElement("a");
   a.className = "wa-float";
   a.href = WA_LINK; a.target = "_blank"; a.rel = "noopener";
-  a.setAttribute("aria-label", "Chat on WhatsApp");
+  a.setAttribute("data-i18n-aria", "a11y.whatsapp");
+  a.setAttribute("aria-label", t("a11y.whatsapp", getLang()));
   a.innerHTML = IC.wa;
   document.body.appendChild(a);
 }
@@ -269,6 +307,93 @@ function fillContact() {
   set('[data-contact="wa"]', WA_LINK, CONFIG.phoneDisplay);
   set('[data-contact="email"]', "mailto:" + CONFIG.email, CONFIG.email);
   set('[data-contact="phone"]', "tel:" + CONFIG.phoneDial, CONFIG.phoneDisplay);
+}
+
+/* ---------- Arabic web font (loaded only when Arabic is active) ---------- */
+function ensureArabicFont() {
+  if (document.getElementById("ar-font")) return;
+  const l = document.createElement("link");
+  l.id = "ar-font"; l.rel = "stylesheet";
+  l.href = "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap";
+  document.head.appendChild(l);
+}
+
+/* ---------- Mark decorative SVGs / glyphs for assistive tech ---------- */
+function markDecorativeSvgs() {
+  document.querySelectorAll('svg:not([role="img"])').forEach(s => {
+    s.setAttribute("aria-hidden", "true");
+    s.setAttribute("focusable", "false");
+  });
+  document.querySelectorAll(".faq-q .ic").forEach(i => i.setAttribute("aria-hidden", "true"));
+}
+
+/* ---------- SEO: JSON-LD structured data ---------- */
+function injectStructuredData() {
+  const page = document.documentElement.getAttribute("data-page") || "home";
+  const path = page === "home" ? "/" : "/" + page + ".html";
+  const social = Object.values(CONFIG.social).filter(u => u && u !== "#");
+  const add = (obj) => {
+    const s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.textContent = JSON.stringify(obj);
+    document.head.appendChild(s);
+  };
+  add({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "FinancialService"],
+        "@id": SITE_URL + "/#org",
+        "name": "OfoqAlNajah",
+        "alternateName": "أفق النجاح",
+        "url": SITE_URL + "/",
+        "logo": SITE_URL + "/assets/icon-512.png",
+        "image": SITE_URL + "/assets/og-image.jpg",
+        "description": t("meta.home.desc", "en"),
+        "email": CONFIG.email,
+        "telephone": CONFIG.phoneDial,
+        "sameAs": social,
+        "areaServed": "MENA",
+        "knowsLanguage": ["en", "ar"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": CONFIG.phoneDial,
+          "email": CONFIG.email,
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Arabic"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": SITE_URL + "/#website",
+        "url": SITE_URL + "/",
+        "name": "OfoqAlNajah",
+        "publisher": { "@id": SITE_URL + "/#org" },
+        "inLanguage": ["en", "ar"]
+      }
+    ]
+  });
+  if (page !== "home") {
+    add({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": t("nav.home", "en"), "item": SITE_URL + "/" },
+        { "@type": "ListItem", "position": 2, "name": t("meta." + page + ".title", "en").split(" — ")[0], "item": SITE_URL + path }
+      ]
+    });
+  }
+  if (page === "courses") {
+    const qa = [];
+    for (let i = 1; i <= 4; i++) {
+      qa.push({
+        "@type": "Question",
+        "name": t("courses.faq.q" + i, "en"),
+        "acceptedAnswer": { "@type": "Answer", "text": t("courses.faq.a" + i, "en") }
+      });
+    }
+    add({ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa });
+  }
 }
 
 /* ---------- Boot ---------- */
@@ -291,6 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setActiveNav();
   fillContact();
   applyLang(getLang());
+  injectStructuredData();
 
   const toggle = document.getElementById("langToggle");
   if (toggle) toggle.addEventListener("click", () => setLang(getLang() === "en" ? "ar" : "en"));
@@ -301,4 +427,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initForm();
   initWhatsApp();
   initReveal();
+  markDecorativeSvgs();
 });

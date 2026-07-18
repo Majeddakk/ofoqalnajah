@@ -27,6 +27,20 @@ const I18N = {
     "ticker.4": "Grains & Commodities", "ticker.5": "Strategic Timing", "ticker.6": "Wealth Planning",
     "ticker.7": "Diversification", "ticker.8": "Financial Education",
 
+    /* ---- Accessibility labels ---- */
+    "a11y.skip": "Skip to content",
+    "a11y.brandHome": "OfoqAlNajah — Home",
+    "a11y.mainNav": "Main navigation",
+    "a11y.langToggle": "Switch language",
+    "a11y.menuOpen": "Open menu",
+    "a11y.menuClose": "Close menu",
+    "a11y.whatsapp": "Chat with us on WhatsApp",
+
+    /* ---- 404 ---- */
+    "nf.title": "Page not found",
+    "nf.sub": "The page you're looking for doesn't exist or has moved. Let's get you back on track.",
+    "nf.home": "Back to Home",
+
     /* ---- Footer ---- */
     "footer.about": "Empowering individuals to invest wisely and grow their wealth through expert advisory in stocks, real estate and commodities — paired with hands-on training.",
     "footer.quick": "Quick Links",
@@ -258,6 +272,20 @@ const I18N = {
     "ticker.1": "أسواق الأسهم", "ticker.2": "العقارات", "ticker.3": "الذهب والمعادن",
     "ticker.4": "الحبوب والسلع", "ticker.5": "التوقيت الاستراتيجي", "ticker.6": "تخطيط الثروة",
     "ticker.7": "تنويع المحفظة", "ticker.8": "التعليم المالي",
+
+    /* ---- Accessibility labels ---- */
+    "a11y.skip": "تخطَّ إلى المحتوى",
+    "a11y.brandHome": "أفق النجاح — الرئيسية",
+    "a11y.mainNav": "التنقّل الرئيسي",
+    "a11y.langToggle": "تغيير اللغة",
+    "a11y.menuOpen": "فتح القائمة",
+    "a11y.menuClose": "إغلاق القائمة",
+    "a11y.whatsapp": "تواصل معنا عبر واتساب",
+
+    /* ---- 404 ---- */
+    "nf.title": "الصفحة غير موجودة",
+    "nf.sub": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها. دعنا نعيدك إلى المسار الصحيح.",
+    "nf.home": "العودة إلى الرئيسية",
 
     /* ---- Footer ---- */
     "footer.about": "نُمكّن الأفراد من الاستثمار بذكاء وتنمية ثرواتهم عبر استشارات متخصصة في الأسهم والعقارات والسلع — إلى جانب تدريب عملي وتطبيقي.",
