@@ -385,7 +385,7 @@ function injectStructuredData() {
   }
   if (page === "courses") {
     const qa = [];
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; ("courses.faq.q" + i) in I18N.en; i++) {
       qa.push({
         "@type": "Question",
         "name": t("courses.faq.q" + i, "en"),

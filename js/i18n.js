@@ -217,10 +217,8 @@ const I18N = {
     "courses.faq.a1": "Not at all. Our programs are designed for every level — including complete beginners. We start from the fundamentals and build up at your pace.",
     "courses.faq.q2": "How long are the courses?",
     "courses.faq.a2": "It depends on the track. One-to-one sessions are tailored to your goals, online courses are self-paced, and practical training runs as a structured program ending with a certified exam. Contact us for the current schedule.",
-    "courses.faq.q3": "Will I get a certificate?",
-    "courses.faq.a3": "Yes — our practical training track includes a certified exam, and you receive a certificate validating your skills and knowledge upon completion.",
-    "courses.faq.q4": "Can I learn about both stocks and real estate?",
-    "courses.faq.a4": "Absolutely. Our one-to-one coaching can be fully customized to your interests, whether that's stocks, real estate, commodities or a combination of all three.",
+    "courses.faq.q3": "Can I learn about both stocks and real estate?",
+    "courses.faq.a3": "Absolutely. Our one-to-one coaching can be fully customized to your interests, whether that's stocks, real estate, commodities or a combination of all three.",
 
     /* ---- Contact ---- */
     "contact.hero.title": "Let's Talk",
@@ -463,10 +461,8 @@ const I18N = {
     "courses.faq.a1": "إطلاقًا. برامجنا مُصمّمة لكل مستوى — بما في ذلك المبتدئين تمامًا. نبدأ من الأساسيات ونبني على وتيرتك.",
     "courses.faq.q2": "ما مدّة الدورات؟",
     "courses.faq.a2": "يعتمد على المسار. الجلسات الفردية مُصمّمة وفق أهدافك، والدورات عبر الإنترنت ذاتية الوتيرة، والتدريب العملي برنامج مُنظّم ينتهي باختبار معتمد. تواصل معنا للجدول الحالي.",
-    "courses.faq.q3": "هل أحصل على شهادة؟",
-    "courses.faq.a3": "نعم — يتضمّن مسار التدريب العملي اختبارًا معتمدًا، وتحصل على شهادة تُثبت مهاراتك ومعرفتك عند الإتمام.",
-    "courses.faq.q4": "هل يمكنني التعلّم عن الأسهم والعقارات معًا؟",
-    "courses.faq.a4": "بالتأكيد. يمكن تخصيص الإرشاد الفردي بالكامل حسب اهتماماتك، سواء كانت أسهمًا أو عقارات أو سلعًا أو مزيجًا من الثلاثة.",
+    "courses.faq.q3": "هل يمكنني التعلّم عن الأسهم والعقارات معًا؟",
+    "courses.faq.a3": "بالتأكيد. يمكن تخصيص الإرشاد الفردي بالكامل حسب اهتماماتك، سواء كانت أسهمًا أو عقارات أو سلعًا أو مزيجًا من الثلاثة.",
 
     /* ---- Contact ---- */
     "contact.hero.title": "لنتحدّث",
