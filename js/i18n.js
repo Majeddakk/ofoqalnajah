@@ -73,7 +73,7 @@ const I18N = {
     "home.hero.sub": "Empowering individuals with the knowledge and strategies to invest wisely — in stocks, real estate, commodities and beyond.",
     "home.hero.cta1": "Book a Free Consultation",
     "home.hero.cta2": "Explore Our Courses",
-    "home.stat1.n": "3+", "home.stat1.l": "Investment tracks",
+    "home.stat1.n": "360°", "home.stat1.l": "Wealth perspective",
     "home.stat2.n": "1:1", "home.stat2.l": "Personal mentorship",
     "home.stat3.n": "100%", "home.stat3.l": "Transparent guidance",
 
@@ -319,7 +319,7 @@ const I18N = {
     "home.hero.sub": "نُزوّد الأفراد بالمعرفة والاستراتيجيات اللازمة للاستثمار بحكمة — في الأسهم والعقارات والسلع وما هو أبعد من ذلك.",
     "home.hero.cta1": "احجز استشارة مجانية",
     "home.hero.cta2": "استكشف دوراتنا",
-    "home.stat1.n": "+3", "home.stat1.l": "مسارات استثمارية",
+    "home.stat1.n": "360°", "home.stat1.l": "رؤية شاملة",
     "home.stat2.n": "1:1", "home.stat2.l": "إرشاد شخصي",
     "home.stat3.n": "100%", "home.stat3.l": "شفافية كاملة",
 
