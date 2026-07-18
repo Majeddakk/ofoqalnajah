@@ -173,6 +173,8 @@ html[lang="ar"] .hero h1 .g { font-style: normal; }
 .hero-art { display: flex; justify-content: center; }
 .hero-svg { width: 100%; max-width: 470px; height: auto; filter: drop-shadow(0 20px 44px rgba(166,124,42,.28)); animation: floaty 7s ease-in-out infinite; }
 @keyframes floaty { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-14px); } }
+.hero-sun-glow { transform-box: fill-box; transform-origin: center; animation: sunpulse 5s ease-in-out infinite; }
+@keyframes sunpulse { 0%,100%{ opacity: .8; transform: scale(1); } 50%{ opacity: 1; transform: scale(1.06); } }
 @media (max-width: 900px){ .hero-grid { grid-template-columns: 1fr; } .hero-art { display: none; } }
 
 /* ---------- Sections ---------- */
@@ -350,6 +352,9 @@ html.js .reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Mobile nav ---------- */
 @media (max-width: 940px) {
+  /* Off-canvas menu is position:fixed inside the header; backdrop-filter on the header
+     would make it a containing block and trap the menu. Drop it on mobile. */
+  .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--navy-950); }
   .hamburger { display: flex; }
   .nav-links { position: fixed; inset-block-start: var(--header-h); inset-inline: 0; inset-block-end: 0; background: var(--navy-950); flex-direction: column; align-items: stretch; gap: 0; padding: 22px; transform: translateX(100%); visibility: hidden; transition: transform .35s var(--ease), visibility .35s; overflow-y: auto; }
   html[dir="rtl"] .nav-links { transform: translateX(-100%); }
