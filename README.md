@@ -52,7 +52,9 @@ const CONFIG = {
 
 Brand palette (sampled from the logo) is defined once at the top of [`css/styles.css`](css/styles.css):
 
-- Navy `#12226D` · Gold `#D0A945` · White `#F8FCFF`
+- Navy `#12226D` · Brass gold `#C99A38` · Warm paper `#FBF8F1`
+
+Headings use the **Fraunces** serif (Latin) / **Cairo** (Arabic); body is **Inter** / **Cairo**.
 
 ## 💻 Preview locally
 

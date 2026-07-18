@@ -22,6 +22,11 @@ const I18N = {
     "brand.tag": "AlNajah",
     "lang.label": "عربي",
 
+    /* ---- Ticker ---- */
+    "ticker.1": "Stock Markets", "ticker.2": "Real Estate", "ticker.3": "Gold & Metals",
+    "ticker.4": "Grains & Commodities", "ticker.5": "Strategic Timing", "ticker.6": "Wealth Planning",
+    "ticker.7": "Diversification", "ticker.8": "Financial Education",
+
     /* ---- Footer ---- */
     "footer.about": "Empowering individuals to invest wisely and grow their wealth through expert advisory in stocks, real estate and commodities — paired with hands-on training.",
     "footer.quick": "Quick Links",
@@ -88,6 +93,9 @@ const I18N = {
     "home.why.2": "A personalized approach for every client and student",
     "home.why.3": "Training options that fit your schedule and learning style",
     "home.why.4": "A long-term partner in your financial growth",
+
+    "home.quote": "We don't chase the market — we <em>read</em> it. Knowledge before capital, timing before the trade, and a partner who stays for the whole journey.",
+    "home.quote.cite": "The OfoqAlNajah Philosophy",
 
     "cta.title": "Ready to take control of your financial future?",
     "cta.p": "Whether you want to invest smarter or learn the skills to do it yourself, OfoqAlNajah is here to guide you.",
@@ -246,6 +254,11 @@ const I18N = {
     "brand.tag": "النجاح",
     "lang.label": "EN",
 
+    /* ---- Ticker ---- */
+    "ticker.1": "أسواق الأسهم", "ticker.2": "العقارات", "ticker.3": "الذهب والمعادن",
+    "ticker.4": "الحبوب والسلع", "ticker.5": "التوقيت الاستراتيجي", "ticker.6": "تخطيط الثروة",
+    "ticker.7": "تنويع المحفظة", "ticker.8": "التعليم المالي",
+
     /* ---- Footer ---- */
     "footer.about": "نُمكّن الأفراد من الاستثمار بذكاء وتنمية ثرواتهم عبر استشارات متخصصة في الأسهم والعقارات والسلع — إلى جانب تدريب عملي وتطبيقي.",
     "footer.quick": "روابط سريعة",
@@ -312,6 +325,9 @@ const I18N = {
     "home.why.2": "نهج مُخصّص لكل عميل وطالب",
     "home.why.3": "خيارات تدريب تناسب جدولك وأسلوب تعلّمك",
     "home.why.4": "شريك طويل الأمد في نموّك المالي",
+
+    "home.quote": "نحن لا نلاحق السوق — بل <em>نقرأه</em>. المعرفة قبل رأس المال، والتوقيت قبل الصفقة، وشريكٌ يبقى معك طوال الرحلة.",
+    "home.quote.cite": "فلسفة أفق النجاح",
 
     "cta.title": "هل أنت مستعد للتحكّم بمستقبلك المالي؟",
     "cta.p": "سواء كنت تريد الاستثمار بذكاء أو تعلّم المهارات لتفعل ذلك بنفسك، أفق النجاح هنا ليرشدك.",

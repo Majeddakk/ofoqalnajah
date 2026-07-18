@@ -60,6 +60,13 @@ function headerHTML() {
   </div>`;
 }
 
+function tickerHTML() {
+  let items = "";
+  for (let i = 1; i <= 8; i++) items += `<span data-i18n="ticker.${i}"></span><i></i>`;
+  const group = `<div class="ticker-item">${items}</div>`;
+  return `<div class="ticker-track" aria-hidden="true">${group}${group}</div>`;
+}
+
 function footerHTML() {
   return `
   <div class="container">
@@ -67,6 +74,7 @@ function footerHTML() {
       <div class="footer-brand">
         <img src="assets/logo.jpeg" alt="OFOQ AlNajah">
         <p data-i18n="footer.about"></p>
+        <p class="footer-tag" data-i18n="footer.built"></p>
         <div class="social">
           <a class="s-wa"  href="${WA_LINK}" target="_blank" rel="noopener" aria-label="WhatsApp">${IC.wa}</a>
           <a class="s-ig"  href="${CONFIG.social.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${IC.ig}</a>
@@ -270,6 +278,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const footer = document.querySelector(".site-footer");
   if (header) header.innerHTML = headerHTML();
   if (footer) footer.innerHTML = footerHTML();
+
+  // Market ticker strip, placed directly beneath the hero
+  const hero = document.querySelector(".hero, .page-hero");
+  if (hero && !document.querySelector(".ticker")) {
+    const tk = document.createElement("div");
+    tk.className = "ticker";
+    tk.innerHTML = tickerHTML();
+    hero.insertAdjacentElement("afterend", tk);
+  }
 
   setActiveNav();
   fillContact();

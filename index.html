@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="hero-kicker" data-i18n="home.hero.kicker">Invest Smart · Grow Wealth</span>
+          <span class="kicker" data-i18n="home.hero.kicker">Invest Smart · Grow Wealth</span>
           <h1 data-i18n="home.hero.title">Your Horizon to <span class="g">Financial Success</span>.</h1>
           <p class="hero-sub" data-i18n="home.hero.sub">Empowering individuals with the knowledge and strategies to invest wisely — in stocks, real estate, commodities and beyond.</p>
           <div class="hero-actions">
@@ -99,18 +99,21 @@
       <div class="grid grid-3">
         <article class="card reveal">
           <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 3-4 3 3 5-6"/></svg></div>
+          <span class="idx">01</span>
           <h3 data-i18n="home.serv.1.t">Investment Advisory</h3>
           <p data-i18n="home.serv.1.p">Personalized guidance across stocks, real estate, diversification and long-term wealth planning.</p>
           <a href="services.html" class="btn btn-outline" style="margin-top:18px" data-i18n="home.serv.more">Learn more</a>
         </article>
         <article class="card card-gold reveal">
           <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3 6 9l6 12 6-12-3-6"/></svg></div>
+          <span class="idx">02</span>
           <h3 data-i18n="home.serv.2.t">Commodities & Timing</h3>
           <p data-i18n="home.serv.2.p">We guide investors on what to buy and exactly when — grains, metals, gold and construction — through trusted business partnerships.</p>
           <a href="markets.html" class="btn btn-outline" style="margin-top:18px" data-i18n="home.serv.more">Learn more</a>
         </article>
         <article class="card reveal">
           <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div>
+          <span class="idx">03</span>
           <h3 data-i18n="home.serv.3.t">Training & Education</h3>
           <p data-i18n="home.serv.3.p">From complete beginner to independent investor — private, online and certified practical courses.</p>
           <a href="courses.html" class="btn btn-outline" style="margin-top:18px" data-i18n="home.serv.more">Learn more</a>
@@ -152,17 +155,28 @@
         <h2 data-i18n="home.why.title">A partner in your growth, not a one-time service</h2>
         <div class="divider"><span></span><i></i><span></span></div>
       </div>
-      <div class="grid grid-4">
-        <div class="card reveal"><h3 style="font-size:1.05rem"><span style="color:var(--gold-dark)">01</span></h3><p style="color:var(--ink);font-weight:500" data-i18n="home.why.1">Real, practical experience — not just textbook theory</p></div>
-        <div class="card reveal"><h3 style="font-size:1.05rem"><span style="color:var(--gold-dark)">02</span></h3><p style="color:var(--ink);font-weight:500" data-i18n="home.why.2">A personalized approach for every client and student</p></div>
-        <div class="card reveal"><h3 style="font-size:1.05rem"><span style="color:var(--gold-dark)">03</span></h3><p style="color:var(--ink);font-weight:500" data-i18n="home.why.3">Training options that fit your schedule and learning style</p></div>
-        <div class="card reveal"><h3 style="font-size:1.05rem"><span style="color:var(--gold-dark)">04</span></h3><p style="color:var(--ink);font-weight:500" data-i18n="home.why.4">A long-term partner in your financial growth</p></div>
+      <ul class="list-editorial reveal">
+        <li><span class="n">01</span><div><h3 data-i18n="home.why.1">Real, practical experience — not just textbook theory</h3></div></li>
+        <li><span class="n">02</span><div><h3 data-i18n="home.why.2">A personalized approach for every client and student</h3></div></li>
+        <li><span class="n">03</span><div><h3 data-i18n="home.why.3">Training options that fit your schedule and learning style</h3></div></li>
+        <li><span class="n">04</span><div><h3 data-i18n="home.why.4">A long-term partner in your financial growth</h3></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="section section-deep grain">
+    <div class="container">
+      <div class="pullquote reveal">
+        <span class="mark" aria-hidden="true">“</span>
+        <blockquote data-i18n="home.quote">We don't chase the market — we read it.</blockquote>
+        <cite data-i18n="home.quote.cite">The OfoqAlNajah Philosophy</cite>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section" style="padding-top:0">
+  <section class="section">
     <div class="container">
       <div class="cta-band reveal">
         <h2 data-i18n="cta.title">Ready to take control of your financial future?</h2>
