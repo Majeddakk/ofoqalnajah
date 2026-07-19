@@ -141,6 +141,9 @@ function applyLang(lang) {
   document.querySelectorAll("[data-i18n-aria]").forEach(el => {
     el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria"), lang));
   });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+    el.setAttribute("alt", t(el.getAttribute("data-i18n-alt"), lang));
+  });
 
   // Document title + meta description (per page)
   const page = html.getAttribute("data-page");
