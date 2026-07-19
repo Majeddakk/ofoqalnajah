@@ -144,6 +144,16 @@ const I18N = {
     "about.why.kicker": "Why Choose Us",
     "about.why.title": "Why investors choose OfoqAlNajah",
 
+    "about.team.kicker": "Our Leadership",
+    "about.team.title": "The people behind OfoqAlNajah",
+    "about.team.p": "Experience, discipline and a genuine commitment to every client we work with.",
+    "about.team.1.name": "Bachir Roukoz",
+    "about.team.1.role": "Founder",
+    "about.team.1.p": "Founded OfoqAlNajah to make sound investing understandable and within reach — pairing years of market experience with a straightforward, no-jargon approach.",
+    "about.team.2.name": "Sally Abdallah",
+    "about.team.2.role": "Chief Executive Officer",
+    "about.team.2.p": "Leads the firm's advisory and training operations, making sure every client receives clear guidance and a strategy built around their own goals.",
+
     /* ---- Services (Advisory) ---- */
     "services.hero.title": "Investment Advisory",
     "services.hero.sub": "Personalized guidance to help you grow and protect your wealth.",
@@ -249,6 +259,9 @@ const I18N = {
     "contact.info.wa": "WhatsApp",
     "contact.info.email": "Email",
     "contact.info.phone": "Phone",
+    "contact.phone.ae": "UAE",
+    "contact.phone.lb": "Lebanon",
+    "contact.phone.tr": "Türkiye",
     "contact.info.hours": "Working Hours",
     "contact.info.hours.v": "Mon – Fri, 9:00 – 18:00",
   },
@@ -388,6 +401,16 @@ const I18N = {
     "about.why.kicker": "لماذا نحن",
     "about.why.title": "لماذا يختار المستثمرون أفق النجاح",
 
+    "about.team.kicker": "فريق القيادة",
+    "about.team.title": "من يقف وراء أفق النجاح",
+    "about.team.p": "خبرة وانضباط والتزام صادق تجاه كل عميل نعمل معه.",
+    "about.team.1.name": "بشير روكز",
+    "about.team.1.role": "المؤسّس",
+    "about.team.1.p": "أسّس أفق النجاح ليجعل الاستثمار السليم مفهومًا وفي متناول الجميع، جامعًا بين سنوات من الخبرة في الأسواق وأسلوب واضح خالٍ من التعقيد.",
+    "about.team.2.name": "سالي عبدالله",
+    "about.team.2.role": "الرئيسة التنفيذية",
+    "about.team.2.p": "تقود عمليات الاستشارات والتدريب في الشركة، وتحرص على أن يحصل كل عميل على إرشاد واضح واستراتيجية مبنية وفق أهدافه.",
+
     /* ---- Services (Advisory) ---- */
     "services.hero.title": "الاستشارات الاستثمارية",
     "services.hero.sub": "إرشاد شخصي لمساعدتك على تنمية ثروتك وحمايتها.",
@@ -493,6 +516,9 @@ const I18N = {
     "contact.info.wa": "واتساب",
     "contact.info.email": "البريد الإلكتروني",
     "contact.info.phone": "الهاتف",
+    "contact.phone.ae": "الإمارات",
+    "contact.phone.lb": "لبنان",
+    "contact.phone.tr": "تركيا",
     "contact.info.hours": "ساعات العمل",
     "contact.info.hours.v": "الإثنين – الجمعة، 9:00 – 18:00",
   }

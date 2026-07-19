@@ -6,22 +6,26 @@
 /* ▼▼▼ EDIT THESE — your contact details & form key ▼▼▼ */
 const CONFIG = {
   // WhatsApp number in FULL international format, digits only (no +, spaces or dashes)
-  whatsapp:     "9610000000",
-  phoneDisplay: "+961 00 000 000",
-  phoneDial:    "+9610000000",
-  email:        "info@ofoqalnajah.com",
+  whatsapp:     "96179184841",
+  // All reachable numbers. `labelKey` maps to an i18n key so the country shows in EN + AR.
+  phones: [
+    { labelKey: "contact.phone.ae", display: "+971 50 306 7412", dial: "+971503067412" },
+    { labelKey: "contact.phone.lb", display: "+961 79 184 841",  dial: "+96179184841"  },
+    { labelKey: "contact.phone.tr", display: "+90 505 795 0409", dial: "+905057950409" },
+  ],
+  email:        "ofoqannajah@gmail.com",
   // Free access key from https://web3forms.com (30-sec signup with your email).
   // Until you paste it, the contact form will show a friendly fallback to WhatsApp.
   web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
   social: {
-    instagram: "#",
-    facebook:  "#",
-    linkedin:  "#",
+    instagram: "https://www.instagram.com/ofoqacademy.fx",
   },
 };
 /* ▲▲▲ EDIT THESE ▲▲▲ */
 
 const WA_LINK = "https://wa.me/" + CONFIG.whatsapp;
+// The WhatsApp number, shown in its pretty form (falls back to the first listed number).
+const WA_PHONE = CONFIG.phones.find(p => p.dial.replace(/\D/g, "") === CONFIG.whatsapp) || CONFIG.phones[0];
 
 // Production domain — used for canonical / structured-data URLs. Update to your real domain.
 const SITE_URL = "https://ofoqalnajah.com";
@@ -30,8 +34,6 @@ const SITE_URL = "https://ofoqalnajah.com";
 const IC = {
   wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.3c-1.5 0-3-.4-4.3-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3z"/></svg>',
   ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
-  fb: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg>',
-  li: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8H4v12h2.9V8zM5.4 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zM20 13.4c0-3-1.6-4.4-3.7-4.4-1.7 0-2.5.9-2.9 1.6V8H10.5v12h2.9v-6.7c0-1.3.9-1.8 1.8-1.8s1.9.5 1.9 1.9V20H20v-6.6z"/></svg>',
   mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
   clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
@@ -81,8 +83,6 @@ function footerHTML() {
         <div class="social">
           <a class="s-wa"  href="${WA_LINK}" target="_blank" rel="noopener" aria-label="WhatsApp">${IC.wa}</a>
           <a class="s-ig"  href="${CONFIG.social.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${IC.ig}</a>
-          <a class="s-fb"  href="${CONFIG.social.facebook}" target="_blank" rel="noopener" aria-label="Facebook">${IC.fb}</a>
-          <a class="s-li"  href="${CONFIG.social.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${IC.li}</a>
         </div>
       </div>
       <div class="footer-col">
@@ -103,7 +103,7 @@ function footerHTML() {
         <h4 data-i18n="footer.contact">Get in Touch</h4>
         <a class="f-wa" href="${WA_LINK}" target="_blank" rel="noopener">WhatsApp</a>
         <a class="f-email" href="mailto:${CONFIG.email}">${CONFIG.email}</a>
-        <a class="f-phone" href="tel:${CONFIG.phoneDial}">${CONFIG.phoneDisplay}</a>
+        ${CONFIG.phones.map(p => `<a class="f-phone" href="tel:${p.dial}" dir="ltr">${p.display}</a>`).join("")}
       </div>
     </div>
     <div class="footer-bottom">
@@ -304,9 +304,14 @@ function fillContact() {
     if (href) el.setAttribute("href", href);
     if (text != null) el.textContent = text;
   });
-  set('[data-contact="wa"]', WA_LINK, CONFIG.phoneDisplay);
+  set('[data-contact="wa"]', WA_LINK, WA_PHONE.display);
   set('[data-contact="email"]', "mailto:" + CONFIG.email, CONFIG.email);
-  set('[data-contact="phone"]', "tel:" + CONFIG.phoneDial, CONFIG.phoneDisplay);
+  // Every reachable number, each tappable and labelled with its country.
+  document.querySelectorAll('[data-contact="phones"]').forEach(box => {
+    box.innerHTML = CONFIG.phones.map(p =>
+      `<a href="tel:${p.dial}"><em data-i18n="${p.labelKey}"></em><span dir="ltr">${p.display}</span></a>`
+    ).join("");
+  });
 }
 
 /* ---------- Arabic web font (loaded only when Arabic is active) ---------- */
@@ -351,17 +356,19 @@ function injectStructuredData() {
         "image": SITE_URL + "/assets/og-image.jpg",
         "description": t("meta.home.desc", "en"),
         "email": CONFIG.email,
-        "telephone": CONFIG.phoneDial,
+        "telephone": CONFIG.phones.map(p => p.dial),
         "sameAs": social,
+        "founder": { "@type": "Person", "name": "Bachir Roukoz", "jobTitle": "Founder" },
+        "employee": { "@type": "Person", "name": "Sally Abdallah", "jobTitle": "Chief Executive Officer" },
         "areaServed": "MENA",
         "knowsLanguage": ["en", "ar"],
-        "contactPoint": {
+        "contactPoint": CONFIG.phones.map(p => ({
           "@type": "ContactPoint",
-          "telephone": CONFIG.phoneDial,
+          "telephone": p.dial,
           "email": CONFIG.email,
           "contactType": "customer service",
           "availableLanguage": ["English", "Arabic"]
-        }
+        }))
       },
       {
         "@type": "WebSite",

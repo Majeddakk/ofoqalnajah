@@ -34,14 +34,21 @@ Open [`js/main.js`](js/main.js) and edit the `CONFIG` block at the very top:
 
 ```js
 const CONFIG = {
-  whatsapp:     "9610000000",       // full international number, digits only
-  phoneDisplay: "+961 00 000 000",
-  phoneDial:    "+9610000000",
-  email:        "info@ofoqalnajah.com",
+  whatsapp: "96179184841",          // full international number, digits only
+  phones: [                         // every number shown on the site
+    { labelKey: "contact.phone.ae", display: "+971 50 306 7412", dial: "+971503067412" },
+    { labelKey: "contact.phone.lb", display: "+961 79 184 841",  dial: "+96179184841"  },
+    { labelKey: "contact.phone.tr", display: "+90 505 795 0409", dial: "+905057950409" },
+  ],
+  email: "ofoqannajah@gmail.com",
   web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
-  social: { instagram: "#", facebook: "#", linkedin: "#" },
+  social: { instagram: "https://www.instagram.com/ofoqacademy.fx" },
 };
 ```
+
+To add or remove a number, edit the `phones` array — the footer, the contact page and the
+structured data all read from it. `labelKey` points at an entry in `js/i18n.js` so the country
+name shows correctly in both English and Arabic.
 
 ### Make the contact form work (free, 1 minute)
 1. Go to **https://web3forms.com** → enter your email → get a free **Access Key**.
