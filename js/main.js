@@ -368,8 +368,8 @@ function injectStructuredData() {
         "email": CONFIG.email,
         "telephone": CONFIG.phones.map(p => p.dial),
         "sameAs": social,
-        "founder": { "@type": "Person", "name": "Bachir Roukoz", "jobTitle": "Founder" },
-        "employee": { "@type": "Person", "name": "Sally Abdallah", "jobTitle": "Chief Executive Officer" },
+        "founder": { "@type": "Person", "name": "Bachir Roukoz", "jobTitle": "Founder & Chief Executive Officer" },
+        "employee": { "@type": "Person", "name": "Sally Abdallah", "jobTitle": "Manager" },
         "areaServed": "MENA",
         "knowsLanguage": ["en", "ar"],
         "contactPoint": CONFIG.phones.map(p => ({
