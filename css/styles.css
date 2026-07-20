@@ -72,6 +72,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 ::selection { background: var(--gold); color: var(--navy-950); }
 
 .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 26px; }
+.container-narrow { max-width: 860px; }
 
 /* Film-grain texture for dark surfaces */
 .grain { position: relative; }
@@ -325,6 +326,19 @@ html[lang="ar"] .pullquote blockquote em { font-style: normal; }
 .phone-list em { font-style: normal; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-text); min-width: 62px; }
 html[lang="ar"] .phone-list em { letter-spacing: 0; font-size: .82rem; }
 
+/* ---------- Licence / registration table ---------- */
+.legal-table { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: linear-gradient(180deg,#ffffff 0%,#fdfbf5 100%); box-shadow: 0 4px 18px rgba(12,26,78,.05); }
+.legal-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr); gap: 10px 26px; padding: 18px 24px; border-bottom: 1px solid var(--line); }
+.legal-row:last-child { border-bottom: 0; }
+.legal-row:nth-child(even) { background: rgba(240,234,220,.34); }
+.legal-table dt { font-family: var(--font-ui); font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-text); align-self: center; }
+html[lang="ar"] .legal-table dt { letter-spacing: 0; font-size: .92rem; }
+.legal-table dd { color: var(--navy); font-size: 1rem; line-height: 1.6; align-self: center; }
+.legal-table dd b { font-family: var(--font-display); font-size: 1.22rem; letter-spacing: .02em; }
+@media (max-width: 620px){
+  .legal-row { grid-template-columns: 1fr; gap: 4px; padding: 15px 18px; }
+  .legal-table dd { font-size: .98rem; }
+}
 /* ---------- Team ---------- */
 .team { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 34px; max-width: 900px; margin-inline: auto; }
 @media (max-width: 720px){ .team { grid-template-columns: 1fr; gap: 26px; } }
@@ -358,7 +372,10 @@ html[lang="ar"] .footer-col h4 { letter-spacing: .04em; }
 .social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-navy); display: grid; place-items: center; color: rgba(255,255,255,.8); transition: all .25s; }
 .social a:hover { background: var(--gold); color: var(--navy-950); border-color: var(--gold); transform: translateY(-3px); }
 .social svg { width: 18px; height: 18px; }
-.footer-bottom { border-top: 1px solid var(--line-navy); padding: 24px 0; text-align: center; font-size: .84rem; color: rgba(255,255,255,.5); letter-spacing: .02em; }
+.footer-bottom { border-top: 1px solid var(--line-navy); padding: 24px 0; font-size: .84rem; color: rgba(255,255,255,.5); letter-spacing: .02em; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 20px; text-align: center; }
+.footer-bottom .footer-licence { color: rgba(255,255,255,.62); transition: color .2s; }
+.footer-bottom .footer-licence:hover { color: var(--gold-bright); }
+@media (max-width: 520px){ .footer-bottom { flex-direction: column; gap: 8px; } }
 
 /* ---------- Floating WhatsApp ---------- */
 .wa-float { position: fixed; inset-block-end: 26px; inset-inline-end: 26px; z-index: 90; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff; display: grid; place-items: center; box-shadow: 0 10px 26px rgba(37,211,102,.45); transition: transform .25s; }

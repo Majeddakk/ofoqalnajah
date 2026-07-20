@@ -91,6 +91,7 @@ function footerHTML() {
         <a href="about.html" data-i18n="nav.about">About</a>
         <a href="courses.html" data-i18n="nav.courses">Training</a>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="legal.html" data-i18n="footer.legal">Licence &amp; Registration</a>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer.serv">Our Services</h4>
@@ -108,6 +109,7 @@ function footerHTML() {
     </div>
     <div class="footer-bottom">
       <span data-i18n="footer.rights">© 2026 OfoqAlNajah. All rights reserved.</span>
+      <a class="footer-licence" href="legal.html" data-i18n="footer.licence">Commercial Licence No. 1636183</a>
     </div>
   </div>`;
 }
@@ -354,6 +356,11 @@ function injectStructuredData() {
         "@id": SITE_URL + "/#org",
         "name": "OfoqAlNajah",
         "alternateName": "أفق النجاح",
+        "legalName": "AOFOQ ALNAJAH MANAGEMENT CONSULTANCIES L.L.C",
+        "identifier": [
+          { "@type": "PropertyValue", "name": "Commercial Licence No.", "value": "1636183" },
+          { "@type": "PropertyValue", "name": "Commercial Register No.", "value": "2890303" }
+        ],
         "url": SITE_URL + "/",
         "logo": SITE_URL + "/assets/icon-512.png",
         "image": SITE_URL + "/assets/og-image.jpg",

@@ -51,6 +51,8 @@ const I18N = {
     "footer.serv.wealth": "Wealth Planning",
     "footer.contact": "Get in Touch",
     "footer.rights": "© 2026 OfoqAlNajah. All rights reserved.",
+    "footer.licence": "Commercial Licence No. 1636183",
+    "footer.legal": "Licence & Registration",
     "footer.built": "Your Horizon to Financial Success.",
 
     /* ---- Meta ---- */
@@ -66,6 +68,8 @@ const I18N = {
     "meta.courses.desc": "One-to-one coaching, online courses and certified practical training for every level of investor.",
     "meta.contact.title": "Contact — OfoqAlNajah",
     "meta.contact.desc": "Book a free consultation or ask us anything about investing and our courses.",
+    "meta.legal.title": "Licence & Registration — OfoqAlNajah",
+    "meta.legal.desc": "Company registration details for AOFOQ ALNAJAH MANAGEMENT CONSULTANCIES L.L.C — commercial licence number, legal form and registry numbers.",
 
     /* ---- Home ---- */
     "home.hero.kicker": "Invest Smart · Grow Wealth",
@@ -256,6 +260,25 @@ const I18N = {
     "contact.f.note": "By sending, you agree to be contacted about your inquiry. We never share your details.",
     "contact.f.ok": "Thank you! Your message has been sent — we'll be in touch shortly.",
     "contact.f.err": "Something went wrong. Please try again, or reach us on WhatsApp.",
+    /* ---- Licence & registration ---- */
+    "legal.crumb": "Licence",
+    "legal.hero.title": "Licence & Registration",
+    "legal.hero.sub": "The registration behind OfoqAlNajah — published so you always know exactly who you are dealing with.",
+    "legal.kicker": "Company Details",
+    "legal.title": "Our commercial licence",
+    "legal.p": "OfoqAlNajah is the trading name of the licensed company below. Every detail here is taken directly from our commercial licence.",
+    "legal.f.name": "Registered company name",
+    "legal.f.nameAr": "Registered name (Arabic)",
+    "legal.f.licence": "Commercial licence no.",
+    "legal.f.authority": "Licensing authority",
+    "legal.f.authority.v": "Department of Economic Development",
+    "legal.f.form": "Legal form",
+    "legal.f.form.v": "Limited Liability Company — Single Owner (LLC-SO)",
+    "legal.f.register": "Commercial register no.",
+    "legal.f.chamber": "Chamber of commerce membership no.",
+    "legal.cta.title": "Want to verify anything?",
+    "legal.cta.p": "We are happy to share whatever you need to feel confident before you work with us.",
+
     "contact.info.kicker": "Other Ways",
     "contact.info.title": "Reach us directly",
     "contact.info.wa": "WhatsApp",
@@ -310,6 +333,8 @@ const I18N = {
     "footer.serv.wealth": "تخطيط الثروة",
     "footer.contact": "تواصل معنا",
     "footer.rights": "© 2026 أفق النجاح. جميع الحقوق محفوظة.",
+    "footer.licence": "رخصة تجارية رقم 1636183",
+    "footer.legal": "الرخصة والسجل التجاري",
     "footer.built": "أفقك نحو النجاح المالي.",
 
     /* ---- Meta ---- */
@@ -325,6 +350,8 @@ const I18N = {
     "meta.courses.desc": "تدريب فردي ودورات عبر الإنترنت وتدريب عملي معتمد لكل مستوى من المستثمرين.",
     "meta.contact.title": "تواصل معنا — أفق النجاح",
     "meta.contact.desc": "احجز استشارة مجانية أو اسألنا عن الاستثمار ودوراتنا.",
+    "meta.legal.title": "الرخصة والسجل التجاري — أفق النجاح",
+    "meta.legal.desc": "بيانات تسجيل شركة افق النجاح للاستشارات الادارية ذ.م.م — رقم الرخصة التجارية والشكل القانوني وأرقام السجل.",
 
     /* ---- Home ---- */
     "home.hero.kicker": "استثمر بذكاء · نمِّ ثروتك",
@@ -515,6 +542,25 @@ const I18N = {
     "contact.f.note": "بإرسالك، توافق على أن نتواصل معك بخصوص استفسارك. لا نشارك بياناتك أبدًا.",
     "contact.f.ok": "شكرًا لك! تم إرسال رسالتك — سنتواصل معك قريبًا.",
     "contact.f.err": "حدث خطأ ما. يرجى المحاولة مجددًا، أو تواصل معنا عبر واتساب.",
+    /* ---- الرخصة والسجل ---- */
+    "legal.crumb": "الرخصة",
+    "legal.hero.title": "الرخصة والسجل التجاري",
+    "legal.hero.sub": "بيانات تسجيل أفق النجاح، ننشرها لتعرف تمامًا مع من تتعامل.",
+    "legal.kicker": "بيانات الشركة",
+    "legal.title": "رخصتنا التجارية",
+    "legal.p": "أفق النجاح هو الاسم التجاري للشركة المرخّصة أدناه. جميع البيانات هنا مأخوذة مباشرةً من رخصتنا التجارية.",
+    "legal.f.name": "الاسم المسجّل للشركة",
+    "legal.f.nameAr": "الاسم المسجّل بالعربية",
+    "legal.f.licence": "رقم الرخصة التجارية",
+    "legal.f.authority": "الجهة المرخِّصة",
+    "legal.f.authority.v": "دائرة التنمية الاقتصادية",
+    "legal.f.form": "الشكل القانوني",
+    "legal.f.form.v": "شركة ذات مسؤولية محدودة — الشخص الواحد (ذ.م.م)",
+    "legal.f.register": "رقم السجل التجاري",
+    "legal.f.chamber": "رقم عضوية غرفة التجارة",
+    "legal.cta.title": "هل تودّ التحقّق من أي معلومة؟",
+    "legal.cta.p": "يسعدنا أن نزوّدك بكل ما تحتاجه لتطمئنّ قبل التعامل معنا.",
+
     "contact.info.kicker": "طرق أخرى",
     "contact.info.title": "تواصل معنا مباشرةً",
     "contact.info.wa": "واتساب",
