@@ -41,11 +41,13 @@ const IC = {
 
 /* ---------- Header / Footer templates ---------- */
 function headerHTML() {
-  const link = (page, key, label) => `<a href="${page}.html" data-nav="${page}" data-i18n="nav.${key}">${label}</a>`;
+  // Root-absolute hrefs: this markup is also injected into 404.html, which Vercel
+  // serves from the URL that 404'd — relative links would resolve against that path.
+  const link = (page, key, label) => `<a href="/${page}.html" data-nav="${page}" data-i18n="nav.${key}">${label}</a>`;
   return `
   <div class="nav">
-    <a class="brand" href="index.html" data-i18n-aria="a11y.brandHome" aria-label="OfoqAlNajah — Home">
-      <img src="assets/logo-96.png" alt="OfoqAlNajah logo" width="44" height="44">
+    <a class="brand" href="/index.html" data-i18n-aria="a11y.brandHome" aria-label="OfoqAlNajah — Home">
+      <img src="/assets/logo-96.png" alt="" width="44" height="44" decoding="async">
       <span class="brand-txt"><b data-i18n="brand.name">OFOQ</b><span data-i18n="brand.tag">AlNajah</span></span>
     </a>
     <nav class="nav-links" id="navLinks" data-i18n-aria="a11y.mainNav" aria-label="Main navigation">
@@ -55,11 +57,11 @@ function headerHTML() {
       ${link("markets","markets","Commodities &amp; Timing")}
       ${link("courses","courses","Training")}
       ${link("contact","contact","Contact")}
-      <a class="btn btn-gold menu-cta" href="contact.html" data-i18n="nav.cta">Free Consultation</a>
+      <a class="btn btn-gold menu-cta" href="/contact.html" data-i18n="nav.cta">Free Consultation</a>
     </nav>
     <div class="nav-right">
       <button class="lang-toggle" id="langToggle" type="button" data-i18n-aria="a11y.langToggle" aria-label="Switch language" data-i18n="lang.label">عربي</button>
-      <a class="btn btn-gold nav-cta" href="contact.html" data-i18n="nav.cta">Free Consultation</a>
+      <a class="btn btn-gold nav-cta" href="/contact.html" data-i18n="nav.cta">Free Consultation</a>
       <button class="hamburger" id="hamburger" type="button" data-i18n-aria="a11y.menuOpen" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>`;
@@ -77,7 +79,7 @@ function footerHTML() {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/logo-96.png" alt="OfoqAlNajah" width="52" height="52" loading="lazy" decoding="async">
+        <img src="/assets/logo-96.png" alt="" width="52" height="52" loading="lazy" decoding="async">
         <p data-i18n="footer.about"></p>
         <p class="footer-tag" data-i18n="footer.built"></p>
         <div class="social">
@@ -86,22 +88,22 @@ function footerHTML() {
         </div>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footer.quick">Quick Links</h4>
-        <a href="index.html" data-i18n="nav.home">Home</a>
-        <a href="about.html" data-i18n="nav.about">About</a>
-        <a href="courses.html" data-i18n="nav.courses">Training</a>
-        <a href="contact.html" data-i18n="nav.contact">Contact</a>
-        <a href="legal.html" data-i18n="footer.legal">Licence &amp; Registration</a>
+        <h3 data-i18n="footer.quick">Quick Links</h3>
+        <a href="/index.html" data-i18n="nav.home">Home</a>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+        <a href="/courses.html" data-i18n="nav.courses">Training</a>
+        <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="/legal.html" data-i18n="footer.legal">Licence &amp; Registration</a>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footer.serv">Our Services</h4>
-        <a href="services.html" data-i18n="footer.serv.advisory">Investment Advisory</a>
-        <a href="markets.html" data-i18n="footer.serv.markets">Commodities &amp; Timing</a>
-        <a href="courses.html" data-i18n="footer.serv.courses">Training &amp; Courses</a>
-        <a href="services.html" data-i18n="footer.serv.wealth">Wealth Planning</a>
+        <h3 data-i18n="footer.serv">Our Services</h3>
+        <a href="/services.html" data-i18n="footer.serv.advisory">Investment Advisory</a>
+        <a href="/markets.html" data-i18n="footer.serv.markets">Commodities &amp; Timing</a>
+        <a href="/courses.html" data-i18n="footer.serv.courses">Training &amp; Courses</a>
+        <a href="/services.html" data-i18n="footer.serv.wealth">Wealth Planning</a>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footer.contact">Get in Touch</h4>
+        <h3 data-i18n="footer.contact">Get in Touch</h3>
         <a class="f-wa" href="${WA_LINK}" target="_blank" rel="noopener">WhatsApp</a>
         <a class="f-email" href="mailto:${CONFIG.email}">${CONFIG.email}</a>
         ${CONFIG.phones.map(p => `<a class="f-phone" href="tel:${p.dial}" dir="ltr">${p.display}</a>`).join("")}
@@ -109,7 +111,7 @@ function footerHTML() {
     </div>
     <div class="footer-bottom">
       <span data-i18n="footer.rights">© 2026 OfoqAlNajah. All rights reserved.</span>
-      <a class="footer-licence" href="legal.html" data-i18n="footer.licence">Commercial Licence No. 1636183</a>
+      <a class="footer-licence" href="/legal.html" data-i18n="footer.licence">Commercial Licence No. 1636183</a>
     </div>
   </div>`;
 }
@@ -119,14 +121,35 @@ function t(key, lang) {
   const L = I18N[lang] || I18N.en;
   return (key in L) ? L[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
 }
+/* Touching localStorage can throw outright — Safari private mode, blocked cookies,
+   a sandboxed iframe. Every access is guarded so storage never breaks the page. */
+function storageGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+function storageSet(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+
+/* getLang() resolves the language at BOOT (URL param wins, then stored choice).
+   Once the page is live the rendered <html lang> is the truth — runtime handlers
+   must use currentLang(), or a ?lang= URL would override what the user just picked. */
 function getLang() {
-  try {
-    const p = new URLSearchParams(location.search).get("lang");
-    if (p === "ar" || p === "en") { localStorage.setItem("ofoq_lang", p); return p; }
-  } catch (e) {}
-  return localStorage.getItem("ofoq_lang") || "en";
+  let p = null;
+  try { p = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+  if (p === "ar" || p === "en") { storageSet("ofoq_lang", p); return p; }
+  return storageGet("ofoq_lang") || "en";
 }
-function setLang(lang) { localStorage.setItem("ofoq_lang", lang); applyLang(lang); }
+function currentLang() {
+  return document.documentElement.getAttribute("lang") === "ar" ? "ar" : "en";
+}
+function setLang(lang) {
+  storageSet("ofoq_lang", lang);
+  // Keep ?lang= in step with the choice, or a reload would snap back to the URL's language.
+  try {
+    const url = new URL(location.href);
+    if (url.searchParams.has("lang")) {
+      url.searchParams.set("lang", lang);
+      history.replaceState(null, "", url);
+    }
+  } catch (e) {}
+  applyLang(lang);
+}
 
 function applyLang(lang) {
   const html = document.documentElement;
@@ -146,6 +169,21 @@ function applyLang(lang) {
   document.querySelectorAll("[data-i18n-alt]").forEach(el => {
     el.setAttribute("alt", t(el.getAttribute("data-i18n-alt"), lang));
   });
+
+  // The switcher shows the OTHER language, so tag it or a screen reader reads
+  // "عربي" with an English voice (and "EN" with an Arabic one).
+  const langBtn = document.getElementById("langToggle");
+  if (langBtn) langBtn.setAttribute("lang", lang === "en" ? "ar" : "en");
+
+  // The loop above resets the burger to "Open menu" from its data-i18n-aria. If the
+  // menu is actually open, put the close label back.
+  const burger = document.getElementById("hamburger");
+  if (burger && burger.getAttribute("aria-expanded") === "true") {
+    burger.setAttribute("aria-label", t("a11y.menuClose", lang));
+  }
+  // An open FAQ panel is pinned to a pixel max-height measured in the old language;
+  // the swapped text is a different height, so re-measure or it clips / leaves a gap.
+  resizeOpenFAQ();
 
   // Document title + meta description (per page)
   const page = html.getAttribute("data-page");
@@ -181,12 +219,18 @@ function initMobileNav() {
   const links = document.getElementById("navLinks");
   if (!burger || !links) return;
   const items = () => links.querySelectorAll("a");
+  // The trap must also hold the controls that live outside #navLinks — the burger
+  // itself and the language toggle — or the menu can only be closed with Escape.
+  const trapStops = () => {
+    const extra = [document.getElementById("langToggle"), burger].filter(Boolean);
+    return [...items(), ...extra];
+  };
   const toggle = (open) => {
     const isOpen = open ?? !links.classList.contains("open");
     links.classList.toggle("open", isOpen);
     burger.classList.toggle("open", isOpen);
     burger.setAttribute("aria-expanded", String(isOpen));
-    burger.setAttribute("aria-label", t(isOpen ? "a11y.menuClose" : "a11y.menuOpen", getLang()));
+    burger.setAttribute("aria-label", t(isOpen ? "a11y.menuClose" : "a11y.menuOpen", currentLang()));
     document.body.style.overflow = isOpen ? "hidden" : "";
     if (isOpen) { requestAnimationFrame(() => { const f = items()[0]; if (f) f.focus(); }); }
     else if (document.activeElement && links.contains(document.activeElement)) burger.focus();
@@ -197,12 +241,18 @@ function initMobileNav() {
     if (!links.classList.contains("open")) return;
     if (e.key === "Escape") { toggle(false); return; }
     if (e.key === "Tab") {
-      const list = items(); if (!list.length) return;
+      const list = trapStops(); if (!list.length) return;
       const first = list[0], last = list[list.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
+  // Rotating a tablet to landscape hides the burger via CSS while the menu is still
+  // "open" — that would leave body scroll locked with no visible way to release it.
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1060 && links.classList.contains("open")) toggle(false); // matches the CSS breakpoint
+    resizeOpenFAQ();
+  }, { passive: true });
 }
 
 /* ---------- Reveal on scroll ---------- */
@@ -237,34 +287,56 @@ function initFAQ() {
   });
 }
 
+/* Re-measure any open FAQ panel — its inline max-height goes stale whenever the
+   text reflows (language switch, viewport resize). */
+function resizeOpenFAQ() {
+  document.querySelectorAll(".faq-item.open .faq-a").forEach(ans => {
+    ans.style.maxHeight = ans.scrollHeight + "px";
+  });
+}
+
 /* ---------- Contact form (Web3Forms) ---------- */
 function initForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
   const msg = form.querySelector(".form-msg");
   const btn = form.querySelector('[type="submit"]');
-  const lang = getLang();
+  if (!msg || !btn) return;
+  let busy = false;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (busy) return;
     msg.className = "form-msg";
+    msg.textContent = "";           // clear any message left from a previous attempt
     // Client-side validation (required fields + email format)
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    const lang = getLang();
+    const lang = currentLang();
     const data = Object.fromEntries(new FormData(form).entries());
     const keyMissing = !CONFIG.web3formsKey || CONFIG.web3formsKey.startsWith("YOUR_");
     if (keyMissing) {
       // Fallback until a Web3Forms key is set: hand the enquiry off to WhatsApp, prefilled.
       const txt = `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "-"}\nInterest: ${data.interest || "-"}\n\n${data.message || ""}`;
-      window.open(WA_LINK + "?text=" + encodeURIComponent(txt), "_blank", "noopener");
-      form.reset();
+      busy = true;
+      const win = window.open(WA_LINK + "?text=" + encodeURIComponent(txt), "_blank", "noopener");
+      busy = false;
+      if (!win) {
+        // Pop-up blocked — say so and KEEP what they typed, rather than claiming success.
+        msg.classList.add("err");
+        msg.textContent = t("contact.f.waBlocked", lang);
+        return;
+      }
+      // WhatsApp only opens a prefilled draft; the user still has to hit send, so
+      // this must not claim the message was delivered.
       msg.classList.add("ok");
-      msg.textContent = t("contact.f.ok", lang);
+      msg.textContent = t("contact.f.wa", lang);
       return;
     }
     const origHTML = btn.innerHTML;
+    busy = true;
     btn.disabled = true;
     btn.textContent = t("contact.f.sending", lang);
+
     try {
       data.access_key = CONFIG.web3formsKey;
       data.subject = "New enquiry — OfoqAlNajah website";
@@ -278,15 +350,16 @@ function initForm() {
       if (out.success) {
         form.reset();
         msg.classList.add("ok");
-        msg.textContent = t("contact.f.ok", getLang());
+        msg.textContent = t("contact.f.ok", currentLang());
       } else { throw new Error(out.message || "failed"); }
     } catch (err) {
       msg.classList.add("err");
-      msg.textContent = t("contact.f.err", getLang());
+      msg.textContent = t("contact.f.err", currentLang());
     } finally {
+      busy = false;
       btn.disabled = false;
       btn.innerHTML = origHTML;
-      applyLang(getLang()); // re-apply label translation on the button
+      applyLang(currentLang()); // re-apply label translation on the button
     }
   });
 }
@@ -340,6 +413,8 @@ function markDecorativeSvgs() {
 /* ---------- SEO: JSON-LD structured data ---------- */
 function injectStructuredData() {
   const page = document.documentElement.getAttribute("data-page") || "home";
+  // The 404 page must not claim to be the homepage — it is served from arbitrary URLs.
+  if (page === "404") return;
   const path = page === "home" ? "/" : "/" + page + ".html";
   const social = Object.values(CONFIG.social).filter(u => u && u !== "#");
   const add = (obj) => {
@@ -352,14 +427,17 @@ function injectStructuredData() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["Organization", "FinancialService"],
+        // Plain Organization on purpose: FinancialService is a LocalBusiness subtype,
+        // which Google validates as requiring a postal address we don't publish.
+        "@type": "Organization",
         "@id": SITE_URL + "/#org",
         "name": "OfoqAlNajah",
         "alternateName": "أفق النجاح",
         "legalName": "AOFOQ ALNAJAH MANAGEMENT CONSULTANCIES L.L.C",
         "identifier": [
           { "@type": "PropertyValue", "name": "Commercial Licence No.", "value": "1636183" },
-          { "@type": "PropertyValue", "name": "Commercial Register No.", "value": "2890303" }
+          { "@type": "PropertyValue", "name": "Commercial Register No.", "value": "2890303" },
+          { "@type": "PropertyValue", "name": "Chamber of Commerce Membership No.", "value": "692419" }
         ],
         "url": SITE_URL + "/",
         "logo": SITE_URL + "/assets/icon-512.png",
@@ -416,6 +494,18 @@ function injectStructuredData() {
 /* ---------- Boot ---------- */
 document.documentElement.classList.add("js"); // enables reveal-on-scroll; no-JS keeps content visible
 document.addEventListener("DOMContentLoaded", () => {
+  try {
+    boot();
+  } catch (err) {
+    // Content is hidden by `html.js .reveal { opacity: 0 }` until initReveal() runs.
+    // If boot dies before that, dropping the class makes everything visible again —
+    // a degraded page beats a blank one.
+    document.documentElement.classList.remove("js");
+    console.error("OfoqAlNajah: boot failed —", err);
+  }
+});
+
+function boot() {
   const header = document.querySelector(".site-header");
   const footer = document.querySelector(".site-footer");
   if (header) header.innerHTML = headerHTML();
@@ -435,8 +525,11 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLang(getLang());
   injectStructuredData();
 
+  // Flip from what is actually rendered, not from getLang() — that re-reads ?lang=
+  // and would fight the user's click on a URL that carries a language parameter.
   const toggle = document.getElementById("langToggle");
-  if (toggle) toggle.addEventListener("click", () => setLang(getLang() === "en" ? "ar" : "en"));
+  if (toggle) toggle.addEventListener("click", () =>
+    setLang(document.documentElement.getAttribute("lang") === "ar" ? "en" : "ar"));
 
   initHeaderScroll();
   initMobileNav();
@@ -445,4 +538,4 @@ document.addEventListener("DOMContentLoaded", () => {
   initWhatsApp();
   initReveal();
   markDecorativeSvgs();
-});
+}

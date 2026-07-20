@@ -1,5 +1,6 @@
 # Source/docs not needed in the deployed site
 OfoqAlNajah_Website_Copy.md
+__qa_*.html
 README.md
 .gitignore
 assets/logo-transparent.png

@@ -1,6 +1,6 @@
-/* ============================================================
-   OFOQ AlNajah — Global Stylesheet  (v2 · editorial redesign)
-   Palette from logo: deep navy #12226D · brass gold · warm paper
+﻿/* ============================================================
+   OFOQ AlNajah â€” Global Stylesheet  (v2 Â· editorial redesign)
+   Palette from logo: deep navy #12226D Â· brass gold Â· warm paper
    Display serif: Fraunces (EN) / Cairo (AR)
    ============================================================ */
 
@@ -12,7 +12,7 @@
   --navy-700: #1D2E86;
   --navy-600: #2A3EA0;
 
-  /* Gold — deeper brass for a richer, less "light" feel */
+  /* Gold â€” deeper brass for a richer, less "light" feel */
   --gold:        #C99A38;
   --gold-bright: #E6C46A;
   --gold-deep:   #A67C2A;
@@ -56,7 +56,8 @@ html[lang="ar"] {
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+/* scroll-padding keeps anchor targets (and the skip link) clear of the sticky header */
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; scroll-padding-top: var(--header-h); }
 body {
   margin: 0; font-family: var(--font-body); color: var(--ink);
   background: var(--paper); line-height: 1.7; font-size: 17px;
@@ -66,7 +67,7 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
 h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.1; margin: 0 0 .5em; color: var(--navy); font-weight: 600; letter-spacing: -.015em; }
-/* Arabic sits taller than Latin — 1.1 crowds the tashkeel once a heading wraps */
+/* Arabic sits taller than Latin â€” 1.1 crowds the tashkeel once a heading wraps */
 html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { letter-spacing: 0; font-weight: 700; line-height: 1.35; }
 p { margin: 0 0 1rem; }
 ul { margin: 0; padding: 0; list-style: none; }
@@ -97,7 +98,9 @@ html[lang="ar"] .kicker { letter-spacing: .06em; }
   display: inline-flex; align-items: center; gap: .6rem; font-family: var(--font-ui); font-weight: 600;
   font-size: .96rem; letter-spacing: .01em; padding: .9rem 1.7rem; border-radius: 4px; border: 1.5px solid transparent;
   transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s, color .3s, border-color .3s;
-  white-space: nowrap;
+  /* NOT nowrap: a long label sets the min-width of its grid track, which pushed whole
+     sections past the viewport on narrow phones â€” and overflow-x:hidden hid the evidence. */
+  white-space: normal; text-align: center; max-width: 100%;
 }
 .btn svg { width: 17px; height: 17px; transition: transform .3s var(--ease); }
 .btn:hover svg { transform: translateX(3px); }
@@ -162,7 +165,7 @@ html[dir="rtl"] .ticker-track { animation-direction: reverse; }
 .hero { position: relative; overflow: hidden; color: #fff; background: linear-gradient(155deg, var(--navy) 0%, var(--navy-950) 92%); padding: clamp(70px,11vw,124px) 0 clamp(80px,11vw,130px); }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(900px 520px at 80% -5%, rgba(42,62,160,.55), transparent 60%); pointer-events: none; }
 .hero .container { position: relative; z-index: 2; }
-.hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 48px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,.88fr); align-items: center; gap: 48px; }
 .hero h1 { color: #fff; font-size: clamp(2.5rem, 6vw, 4.3rem); font-weight: 500; line-height: 1.04; margin-bottom: 1.3rem; }
 .hero h1 .g { color: var(--gold-bright); font-style: italic; }
 html[lang="ar"] .hero h1 .g { font-style: normal; }
@@ -179,7 +182,7 @@ html[lang="ar"] .hero h1 .g { font-style: normal; }
 @keyframes sunpulse { 0%,100%{ opacity: .8; transform: scale(1); } 50%{ opacity: 1; transform: scale(1.06); } }
 .skyline { transform-box: fill-box; transform-origin: 50% 100%; animation: skylineRise 1.1s var(--ease) .15s both; }
 @keyframes skylineRise { from{ transform: scaleY(0); opacity: 0; } to{ transform: scaleY(1); opacity: 1; } }
-@media (max-width: 900px){ .hero-grid { grid-template-columns: 1fr; } .hero-art { display: none; } }
+@media (max-width: 900px){ .hero-grid { grid-template-columns: minmax(0,1fr);} .hero-art { display: none; } }
 
 /* ---------- Sections ---------- */
 .section { padding: clamp(64px, 9vw, 112px) 0; }
@@ -212,7 +215,7 @@ html[lang="ar"] .hero h1 .g { font-style: normal; }
 .grid-3 { grid-template-columns: repeat(3,1fr); }
 .grid-4 { grid-template-columns: repeat(4,1fr); }
 @media (max-width: 980px){ .grid-3,.grid-4 { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 640px){ .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } }
+@media (max-width: 640px){ .grid-2,.grid-3,.grid-4 { grid-template-columns: minmax(0,1fr);} }
 
 .card {
   --c-index: "";
@@ -236,9 +239,9 @@ html[lang="ar"] .hero h1 .g { font-style: normal; }
 .card-gold:hover::before { background: var(--gold-bright); }
 
 /* Feature (editorial two-column) */
-.feature { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(34px,5vw,72px); align-items: center; }
+.feature { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(34px,5vw,72px); align-items: center; }
 .feature.reverse .feature-media { order: 2; }
-@media (max-width: 880px){ .feature { grid-template-columns: 1fr; } .feature.reverse .feature-media { order: 0; } }
+@media (max-width: 880px){ .feature { grid-template-columns: minmax(0,1fr);} .feature.reverse .feature-media { order: 0; } }
 .feature h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); }
 .feature-media { position: relative; border-radius: var(--radius-lg); background: radial-gradient(130% 120% at 28% 18%, var(--navy-700) 0%, var(--navy-950) 68%); min-height: 360px; display: grid; place-items: center; color: var(--gold-bright); box-shadow: var(--shadow-lg); overflow: hidden; }
 .feature-media::before { content: ""; position: absolute; width: 290px; height: 290px; border-radius: 50%; border: 1px solid rgba(230,196,106,.30); box-shadow: 0 0 0 32px rgba(230,196,106,.07), 0 0 0 66px rgba(230,196,106,.045), 0 0 0 104px rgba(230,196,106,.022), 0 0 90px rgba(230,196,106,.15); }
@@ -251,8 +254,8 @@ html[lang="ar"] .hero h1 .g { font-style: normal; }
 .section-navy .check-list li, .section-deep .check-list li { color: rgba(255,255,255,.9); }
 
 /* Editorial numbered list (values / de-templated blocks) */
-.list-editorial { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(30px,5vw,64px); }
-@media (max-width: 720px){ .list-editorial { grid-template-columns: 1fr; } }
+.list-editorial { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 0 clamp(30px,5vw,64px); }
+@media (max-width: 720px){ .list-editorial { grid-template-columns: minmax(0,1fr);} }
 .list-editorial li { display: grid; grid-template-columns: auto 1fr; gap: 1.4rem; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: start; }
 .list-editorial .n { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold-deep); font-weight: 600; line-height: 1; padding-top: 4px; }
 .list-editorial h3 { font-size: 1.28rem; margin-bottom: .3rem; }
@@ -268,6 +271,7 @@ html[lang="ar"] .hero h1 .g { font-style: normal; }
 .pullquote blockquote em { color: var(--gold-bright); font-style: italic; }
 html[lang="ar"] .pullquote blockquote em { font-style: normal; }
 .pullquote cite { display: block; margin-top: 1.6rem; font-family: var(--font-ui); font-style: normal; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+html[lang="ar"] .pullquote cite { letter-spacing: 0; font-size: .95rem; text-transform: none; }
 
 /* Steps (process) */
 .step-index { font-family: var(--font-display); font-size: 2.6rem; font-weight: 600; color: var(--gold-deep); line-height: 1; margin-bottom: 14px; display: block; }
@@ -289,6 +293,10 @@ html[lang="ar"] .pullquote blockquote em { font-style: normal; }
 .page-hero h1 { color: #fff; font-size: clamp(2.2rem,5vw,3.5rem); font-weight: 500; }
 .page-hero p { color: rgba(255,255,255,.8); max-width: 600px; margin-inline: auto; font-size: 1.12rem; }
 .breadcrumb { color: rgba(255,255,255,.55); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.2rem; }
+/* Arabic is cursive â€” positive letter-spacing prises the joined letterforms apart */
+html[lang="ar"] .breadcrumb { letter-spacing: 0; font-size: .92rem; text-transform: none; }
+/* the link needs to look like a link without relying on hover (no hover on touch) */
+.breadcrumb a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .breadcrumb a:hover { color: var(--gold-bright); }
 
 /* ---------- FAQ ---------- */
@@ -299,15 +307,20 @@ html[lang="ar"] .pullquote blockquote em { font-style: normal; }
 .faq-q .ic { width: 30px; height: 30px; flex: none; border-radius: 50%; border: 1.5px solid var(--gold); color: var(--gold-deep); display: grid; place-items: center; font-size: 1.3rem; transition: transform .3s, background .3s, color .3s; }
 .faq-item.open .faq-q .ic { transform: rotate(45deg); background: var(--gold); color: var(--navy-950); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s var(--ease); }
+/* Without JS the accordion can never open, so the answers must not be collapsed */
+html:not(.js) .faq-a { max-height: none; }
 .faq-a p { padding: 0 4px 26px; color: var(--muted); margin: 0; font-size: 1.02rem; }
 
 /* ---------- Forms ---------- */
-.form-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(30px,5vw,64px); }
-@media (max-width: 880px){ .form-wrap { grid-template-columns: 1fr; } }
+.form-wrap { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: clamp(30px,5vw,64px); }
+@media (max-width: 880px){ .form-wrap { grid-template-columns: minmax(0,1fr);} }
 .form { display: grid; gap: 18px; }
 .field label { display: block; font-family: var(--font-ui); font-weight: 600; font-size: .82rem; letter-spacing: .04em; color: var(--navy); margin-bottom: .5rem; text-transform: uppercase; }
 .field input, .field select, .field textarea { width: 100%; padding: .95rem 1.1rem; border: 1.5px solid var(--line); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 1rem; color: var(--ink); background: #fff; transition: border-color .2s, box-shadow .2s; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,154,56,.16); }
+/* Gold border + glow is decoration only — it measures ~2.5:1, under the 3:1 WCAG
+   floor — so the real focus ring must survive rather than be switched off here. */
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,154,56,.16); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 .field textarea { min-height: 140px; resize: vertical; }
 .form-note { font-size: .82rem; color: var(--muted); }
 .form-msg { padding: .95rem 1.1rem; border-radius: var(--radius-sm); font-size: .95rem; display: none; }
@@ -321,8 +334,10 @@ html[lang="ar"] .pullquote blockquote em { font-style: normal; }
 .contact-card .ic svg { width: 21px; height: 21px; }
 .contact-card b { display: block; font-family: var(--font-display); color: var(--navy); font-size: 1.05rem; margin-bottom: 2px; }
 .contact-card span, .contact-card a { color: var(--muted); font-size: .96rem; }
-.contact-card a:hover { color: var(--gold-deep); }
-/* Several numbers under one card — each labelled with its country */
+.contact-card a:hover { color: var(--gold-text); }
+/* Long unbreakable strings (the email) otherwise set the grid track's min-width */
+.contact-card a, .contact-card span, .footer-col a, .phone-list a { overflow-wrap: anywhere; }
+/* Several numbers under one card â€” each labelled with its country */
 .phone-list { display: grid; gap: 5px; margin-top: 3px; }
 .phone-list a { display: flex; align-items: baseline; gap: 9px; }
 .phone-list em { font-style: normal; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-text); min-width: 62px; }
@@ -335,15 +350,17 @@ html[lang="ar"] .phone-list em { letter-spacing: 0; font-size: .82rem; }
 .legal-row:nth-child(even) { background: rgba(240,234,220,.34); }
 .legal-table dt { font-family: var(--font-ui); font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-text); align-self: center; }
 html[lang="ar"] .legal-table dt { letter-spacing: 0; font-size: .92rem; }
-.legal-table dd { color: var(--navy); font-size: 1rem; line-height: 1.6; align-self: center; }
+/* margin:0 kills the UA's 40px dd indent, which resolves against each dd's OWN dir —
+   so LTR values (numbers, the Latin name) indented opposite the Arabic ones. */
+.legal-table dd { margin: 0; color: var(--navy); font-size: 1rem; line-height: 1.6; align-self: center; overflow-wrap: anywhere; }
 .legal-table dd b { font-family: var(--font-display); font-size: 1.22rem; letter-spacing: .02em; }
 @media (max-width: 620px){
-  .legal-row { grid-template-columns: 1fr; gap: 4px; padding: 15px 18px; }
+  .legal-row { grid-template-columns: minmax(0,1fr);gap: 4px; padding: 15px 18px; }
   .legal-table dd { font-size: .98rem; }
 }
 /* ---------- Team ---------- */
 .team { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 34px; max-width: 900px; margin-inline: auto; }
-@media (max-width: 720px){ .team { grid-template-columns: 1fr; gap: 26px; } }
+@media (max-width: 720px){ .team { grid-template-columns: minmax(0,1fr);gap: 26px; } }
 .team-card { background: linear-gradient(180deg,#ffffff 0%,#fdfbf5 100%); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 18px rgba(12,26,78,.05); transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s; }
 .team-card:hover { transform: translateY(-6px); border-color: transparent; box-shadow: 0 26px 52px rgba(12,26,78,.15), 0 0 0 1px rgba(201,154,56,.32); }
 .team-photo { position: relative; aspect-ratio: 5 / 6; background: var(--cream); overflow: hidden; }
@@ -360,14 +377,14 @@ html[lang="ar"] .team-role { letter-spacing: .02em; font-size: .88rem; }
 /* ---------- Footer ---------- */
 .site-footer { position: relative; background: var(--navy-950); color: rgba(255,255,255,.66); padding: clamp(56px,7vw,84px) 0 0; }
 .footer-grid { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1.2fr; gap: 44px; padding-bottom: 48px; }
-@media (max-width: 860px){ .footer-grid { grid-template-columns: 1fr 1fr; gap: 34px; } }
-@media (max-width: 520px){ .footer-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px){ .footer-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 34px; } }
+@media (max-width: 520px){ .footer-grid { grid-template-columns: minmax(0,1fr);} }
 .footer-brand img { height: 52px; border-radius: 9px; margin-bottom: 16px; }
 .footer-brand p { font-size: .94rem; max-width: 310px; line-height: 1.7; }
 .footer-tag { font-family: var(--font-display); font-style: italic; color: var(--gold-bright); font-size: 1.02rem; margin-top: 6px; }
 html[lang="ar"] .footer-tag { font-style: normal; }
-.footer-col h4 { color: #fff; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1.3rem; font-family: var(--font-ui); font-weight: 600; }
-html[lang="ar"] .footer-col h4 { letter-spacing: .04em; }
+.footer-col h3 { color: #fff; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1.3rem; font-family: var(--font-ui); font-weight: 600; }
+html[lang="ar"] .footer-col h3 { letter-spacing: .04em; }
 .footer-col a, .footer-col li { color: rgba(255,255,255,.64); font-size: .95rem; margin-bottom: .7rem; display: block; transition: color .2s, padding .2s; }
 .footer-col a:hover { color: var(--gold-bright); padding-inline-start: 5px; }
 .social { display: flex; gap: 12px; margin-top: 8px; }
@@ -396,7 +413,9 @@ html.js .reveal.in { opacity: 1; transform: none; }
 }
 
 /* ---------- Mobile nav ---------- */
-@media (max-width: 940px) {
+/* 1060px, not 940 — the English nav needs ~1045px, so between those widths
+   "Commodities & Timing" wrapped to a second line inside the fixed-height header. */
+@media (max-width: 1060px) {
   /* Off-canvas menu is position:fixed inside the header; backdrop-filter on the header
      would make it a containing block and trap the menu. Drop it on mobile. */
   .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--navy-950); }
@@ -421,8 +440,14 @@ html[lang="ar"] .pill { letter-spacing: .02em; font-size: .8rem; }
 /* ---------- Focus visibility (WCAG 2.4.7) ---------- */
 :focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; border-radius: 2px; }
 .site-header :focus-visible, .site-footer :focus-visible, .hero :focus-visible, .page-hero :focus-visible,
-.section-navy :focus-visible, .section-deep :focus-visible, .cta-band :focus-visible, .ticker :focus-visible,
-.wa-float:focus-visible { outline-color: var(--gold-bright); }
+.section-navy :focus-visible, .section-deep :focus-visible, .cta-band :focus-visible, .ticker :focus-visible
+{ outline-color: var(--gold-bright); }
+/* Gold on the green button / paper behind it is ~1.2:1 — keep the navy ring there. */
+.wa-float:focus-visible { outline-color: var(--navy); }
+/* White cards inside navy sections need a dark ring, not the section's gold one. */
+.section-navy .card :focus-visible, .section-deep .card :focus-visible { outline-color: var(--navy); }
+/* Focusing <main> via the skip link would otherwise ring the whole page. */
+#main:focus-visible { outline: none; }
 
 /* ---------- Skip link (a11y) ---------- */
 .skip-link { position: absolute; inset-inline-start: 12px; top: -70px; z-index: 200; background: var(--gold); color: var(--navy-950); padding: .75rem 1.15rem; border-radius: 6px; font-family: var(--font-ui); font-weight: 600; font-size: .92rem; box-shadow: var(--shadow-md); transition: top .2s var(--ease); }

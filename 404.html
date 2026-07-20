@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-page="404">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Not Found — OfoqAlNajah</title>
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#12226D">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <!-- Root-absolute throughout: this page is served from whatever URL 404'd
+       (e.g. /some/deep/path), so relative paths would resolve against that path. -->
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>(function(){try{var p=new URLSearchParams(location.search).get('lang');var l=(p==='ar'||p==='en')?p:localStorage.getItem('ofoq_lang');if(l==='ar'){var d=document.documentElement;d.lang='ar';d.dir='rtl';}}catch(e){}})();</script>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
@@ -24,14 +27,14 @@
         <h1 data-i18n="nf.title">Page not found</h1>
         <p data-i18n="nf.sub">The page you're looking for doesn't exist or has moved. Let's get you back on track.</p>
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem">
-          <a href="index.html" class="btn btn-gold btn-lg" data-i18n="nf.home">Back to Home</a>
-          <a href="contact.html" class="btn btn-outline-white btn-lg" data-i18n="nav.contact">Contact</a>
+          <a href="/index.html" class="btn btn-gold btn-lg" data-i18n="nf.home">Back to Home</a>
+          <a href="/contact.html" class="btn btn-outline-white btn-lg" data-i18n="nav.contact">Contact</a>
         </div>
       </div>
     </section>
   </main>
   <footer class="site-footer"></footer>
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
