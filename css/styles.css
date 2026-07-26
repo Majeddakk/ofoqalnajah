@@ -359,8 +359,9 @@ html[lang="ar"] .legal-table dt { letter-spacing: 0; font-size: .92rem; }
   .legal-table dd { font-size: .98rem; }
 }
 /* ---------- Team ---------- */
-.team { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 34px; max-width: 900px; margin-inline: auto; }
-@media (max-width: 720px){ .team { grid-template-columns: minmax(0,1fr);gap: 26px; } }
+.team { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 30px; max-width: 1080px; margin-inline: auto; }
+@media (max-width: 900px){ .team { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 26px; max-width: 720px; } }
+@media (max-width: 600px){ .team { grid-template-columns: minmax(0,1fr); max-width: 420px; } }
 .team-card { background: linear-gradient(180deg,#ffffff 0%,#fdfbf5 100%); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 18px rgba(12,26,78,.05); transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s; }
 .team-card:hover { transform: translateY(-6px); border-color: transparent; box-shadow: 0 26px 52px rgba(12,26,78,.15), 0 0 0 1px rgba(201,154,56,.32); }
 .team-photo { position: relative; aspect-ratio: 5 / 6; background: var(--cream); overflow: hidden; }

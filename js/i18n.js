@@ -155,12 +155,16 @@ const I18N = {
     "about.team.p": "Experience, discipline and a genuine commitment to every client we work with.",
     "about.team.1.alt": "Bachir Roukoz — Founder and Chief Executive Officer of OfoqAlNajah",
     "about.team.2.alt": "Sally Abdallah — Manager at OfoqAlNajah",
+    "about.team.3.alt": "Hani Bidawi — Financial and Managerial Consultant at OfoqAlNajah",
     "about.team.1.name": "Bachir Roukoz",
     "about.team.1.role": "Founder & Chief Executive Officer",
     "about.team.1.p": "Founded OfoqAlNajah to make sound investing understandable and within reach — pairing years of market experience with a straightforward, no-jargon approach.",
     "about.team.2.name": "Sally Abdallah",
     "about.team.2.role": "Manager",
     "about.team.2.p": "Runs the day-to-day of our advisory and training work, making sure every client receives clear guidance and a strategy built around their own goals.",
+    "about.team.3.name": "Hani Bidawi",
+    "about.team.3.role": "Financial & Managerial Consultant",
+    "about.team.3.p": "Advises clients on financial planning and business management, bringing decades of hands-on experience to every decision they make.",
 
     /* ---- Services (Advisory) ---- */
     "services.hero.title": "Investment Advisory",
@@ -441,12 +445,16 @@ const I18N = {
     "about.team.p": "خبرة وانضباط والتزام صادق تجاه كل عميل نعمل معه.",
     "about.team.1.alt": "بشير روكز — مؤسّس أفق النجاح ورئيسها التنفيذي",
     "about.team.2.alt": "سالي عبدالله — مديرة أفق النجاح",
+    "about.team.3.alt": "هاني بيضاوي — مستشار مالي وإداري في أفق النجاح",
     "about.team.1.name": "بشير روكز",
     "about.team.1.role": "المؤسّس والرئيس التنفيذي",
     "about.team.1.p": "أسّس أفق النجاح ليجعل الاستثمار السليم مفهومًا وفي متناول الجميع، جامعًا بين سنوات من الخبرة في الأسواق وأسلوب واضح خالٍ من التعقيد.",
     "about.team.2.name": "سالي عبدالله",
     "about.team.2.role": "المديرة",
     "about.team.2.p": "تدير العمل اليومي في الاستشارات والتدريب، وتحرص على أن يحصل كل عميل على إرشاد واضح واستراتيجية مبنية وفق أهدافه.",
+    "about.team.3.name": "هاني بيضاوي",
+    "about.team.3.role": "مستشار مالي وإداري",
+    "about.team.3.p": "يقدّم المشورة للعملاء في التخطيط المالي وإدارة الأعمال، مستندًا إلى عقودٍ من الخبرة العملية في كل قرار يتّخذونه.",
 
     /* ---- Services (Advisory) ---- */
     "services.hero.title": "الاستشارات الاستثمارية",
