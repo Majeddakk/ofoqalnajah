@@ -1,4 +1,4 @@
-# OfoqAlNajah — Website
+﻿# OfoqAlNajah — Website
 
 Marketing website for **OfoqAlNajah** (أفق النجاح) — investment advisory, commodities & strategic timing, and financial training. Bilingual **English / Arabic** (with full RTL). Pure static HTML/CSS/JS — no build step, no backend.
 
@@ -73,16 +73,16 @@ python -m http.server 8080
 # then open http://localhost:8080
 ```
 
-## 🔎 SEO — set your real domain
+## 🔎 SEO
 
 The site ships with full SEO: per-page titles/descriptions, Open Graph + Twitter cards, a social share image (`assets/og-image.jpg`), canonical + `hreflang` (EN/AR), JSON-LD structured data (Organization, WebSite, Breadcrumbs, FAQ), `sitemap.xml`, `robots.txt`, a web manifest and a custom `404.html`.
 
-**Before launch, replace the placeholder domain `https://ofoqalnajah.com` with your real domain** in these spots:
+The live domain is **`https://ofoqalnajah.finance`**. If it ever changes, update it in all four places:
 - `SITE_URL` at the top of [`js/main.js`](js/main.js) (structured data)
 - the `<link rel="canonical">`, `hreflang` and `og:url` tags in each `.html` `<head>`
 - `sitemap.xml` and the `Sitemap:` line in `robots.txt`
 
-Then submit `sitemap.xml` in Google Search Console. Arabic pages are reachable at `?lang=ar` (e.g. `/about.html?lang=ar`).
+Submit `sitemap.xml` in Google Search Console. Arabic pages are reachable at `?lang=ar` (e.g. `/about.html?lang=ar`).
 
 ## 🚀 Deploy (Vercel)
 

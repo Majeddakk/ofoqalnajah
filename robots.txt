@@ -1,5 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-# Update the domain to your real one, then resubmit in Google Search Console.
-Sitemap: https://ofoqalnajah.com/sitemap.xml
+Sitemap: https://ofoqalnajah.finance/sitemap.xml

@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    OFOQ AlNajah — Site engine
    Injects header/footer, handles EN/AR, nav, animations, form.
    ============================================================ */
@@ -27,8 +27,9 @@ const WA_LINK = "https://wa.me/" + CONFIG.whatsapp;
 // The WhatsApp number, shown in its pretty form (falls back to the first listed number).
 const WA_PHONE = CONFIG.phones.find(p => p.dial.replace(/\D/g, "") === CONFIG.whatsapp) || CONFIG.phones[0];
 
-// Production domain — used for canonical / structured-data URLs. Update to your real domain.
-const SITE_URL = "https://ofoqalnajah.com";
+// Production domain — used for canonical / structured-data URLs.
+// If this changes, also update the <head> tags in each page, sitemap.xml and robots.txt.
+const SITE_URL = "https://ofoqalnajah.finance";
 
 /* ---------- SVG icon set ---------- */
 const IC = {
