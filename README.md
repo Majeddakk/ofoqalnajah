@@ -40,7 +40,7 @@ const CONFIG = {
     { labelKey: "contact.phone.lb", display: "+961 79 184 841",  dial: "+96179184841"  },
     { labelKey: "contact.phone.tr", display: "+90 505 795 0409", dial: "+905057950409" },
   ],
-  email: "ofoqannajah@gmail.com",
+  email: "info@ofoqalnajah.finance",
   web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
   social: { instagram: "https://www.instagram.com/ofoqacademy.fx" },
 };

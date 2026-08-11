@@ -13,7 +13,7 @@ const CONFIG = {
     { labelKey: "contact.phone.lb", display: "+961 79 184 841",  dial: "+96179184841"  },
     { labelKey: "contact.phone.tr", display: "+90 505 795 0409", dial: "+905057950409" },
   ],
-  email:        "ofoqannajah@gmail.com",
+  email:        "info@ofoqalnajah.finance",
   // Free access key from https://web3forms.com (30-sec signup with your email).
   // Until you paste it, the contact form will show a friendly fallback to WhatsApp.
   web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
