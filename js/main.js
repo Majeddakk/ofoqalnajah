@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    OFOQ AlNajah — Site engine
    Injects header/footer, handles EN/AR, nav, animations, form.
    ============================================================ */
@@ -14,10 +14,6 @@ const CONFIG = {
     { labelKey: "contact.phone.tr", display: "+90 505 795 0409", dial: "+905057950409" },
   ],
   email:        "info@ofoqalnajah.finance",
-  // Web3Forms access key — delivers the contact form to the address above.
-  // Public by design (Web3Forms keys live in client-side code); rotate it at
-  // web3forms.com if it ever attracts spam. Clear it to fall back to WhatsApp.
-  web3formsKey: "772112be-1f0e-4eb4-8185-055aeb283270",
   social: {
     instagram: "https://www.instagram.com/ofoqacademy.fx",
   },
@@ -297,86 +293,66 @@ function resizeOpenFAQ() {
   });
 }
 
-/* ---------- Contact form (Web3Forms) ---------- */
+/* ---------- Contact form → the visitor's own email app ----------
+   No backend and no third-party relay: submitting builds a mailto: link with the
+   whole enquiry pre-written, so the visitor reviews and sends it themselves. That
+   also means the reply-to is genuinely theirs. */
 function initForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
   const msg = form.querySelector(".form-msg");
   const btn = form.querySelector('[type="submit"]');
   if (!msg || !btn) return;
-  let busy = false;
 
-  form.addEventListener("submit", async (e) => {
+  // Mail clients (and Windows' handler) start truncating well before the URL spec's
+  // limit, so keep the whole link comfortably short.
+  const MAX_URL = 1900;
+
+  const addLink = (href, key, lang, blank) => {
+    const a = document.createElement("a");
+    a.href = href;
+    if (blank) { a.target = "_blank"; a.rel = "noopener"; }
+    a.textContent = t(key, lang);
+    msg.appendChild(a);
+  };
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (busy) return;
     msg.className = "form-msg";
-    msg.textContent = "";           // clear any message left from a previous attempt
-    // Client-side validation (required fields + email format)
+    msg.textContent = "";
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    const lang = currentLang();
-    const data = Object.fromEntries(new FormData(form).entries());
-    // The same enquiry, formatted for WhatsApp — used by the no-key fallback and,
-    // more importantly, to rescue a submission if the mail relay is unreachable.
-    const waText = () => `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "-"}\nInterest: ${data.interest || "-"}\n\n${data.message || ""}`;
-    const waHref = () => WA_LINK + "?text=" + encodeURIComponent(waText());
-    const keyMissing = !CONFIG.web3formsKey || CONFIG.web3formsKey.startsWith("YOUR_");
-    if (keyMissing) {
-      // Fallback until a Web3Forms key is set: hand the enquiry off to WhatsApp, prefilled.
-      busy = true;
-      const win = window.open(waHref(), "_blank", "noopener");
-      busy = false;
-      if (!win) {
-        // Pop-up blocked — say so and KEEP what they typed, rather than claiming success.
-        msg.classList.add("err");
-        msg.textContent = t("contact.f.waBlocked", lang);
-        return;
-      }
-      // WhatsApp only opens a prefilled draft; the user still has to hit send, so
-      // this must not claim the message was delivered.
-      msg.classList.add("ok");
-      msg.textContent = t("contact.f.wa", lang);
-      return;
-    }
-    const origHTML = btn.innerHTML;
-    busy = true;
-    btn.disabled = true;
-    btn.textContent = t("contact.f.sending", lang);
 
-    try {
-      data.access_key = CONFIG.web3formsKey;
-      data.subject = "New enquiry — OfoqAlNajah website";
-      data.from_name = "OfoqAlNajah Website";
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
-      });
-      // A blocked or erroring relay can answer with HTML, so don't assume JSON.
-      let out = null;
-      try { out = await res.json(); } catch (_) { /* handled by the !ok check below */ }
-      if (res.ok && out && out.success) {
-        form.reset();
-        msg.classList.add("ok");
-        msg.textContent = t("contact.f.ok", currentLang());
-      } else { throw new Error((out && out.message) || ("HTTP " + res.status)); }
-    } catch (err) {
-      // Never leave them at a dead end: their text is preserved and this offers a
-      // one-tap WhatsApp handoff with the whole enquiry already filled in.
-      const l = currentLang();
-      msg.classList.add("err");
-      msg.textContent = t("contact.f.err", l) + " ";
-      const a = document.createElement("a");
-      a.href = waHref();
-      a.target = "_blank"; a.rel = "noopener";
-      a.className = "form-msg-wa";
-      a.textContent = t("contact.f.errWaLink", l);
-      msg.appendChild(a);
-    } finally {
-      busy = false;
-      btn.disabled = false;
-      btn.innerHTML = origHTML;
-      applyLang(currentLang()); // re-apply label translation on the button
+    const lang = currentLang();
+    const d = Object.fromEntries(new FormData(form).entries());
+    const subject = `Website enquiry — ${d.name}`;
+    const lines = [
+      `Name: ${d.name}`,
+      `Email: ${d.email}`,
+      `Phone: ${d.phone || "-"}`,
+      `Interested in: ${d.interest || "-"}`,
+      "",
+      d.message || "",
+    ];
+    const build = (body) =>
+      `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    let href = build(lines.join("\n"));
+    if (href.length > MAX_URL) {
+      // Trim the message itself rather than let the mail client silently cut the link.
+      const overflow = href.length - MAX_URL;
+      const trimmed = (d.message || "").slice(0, Math.max(0, (d.message || "").length - overflow - 40)) + " […]";
+      href = build([...lines.slice(0, 5), trimmed].join("\n"));
     }
+
+    // Assigning location.href hands off to the mail client without unloading the page.
+    window.location.href = href;
+
+    // We cannot detect whether a mail app actually opened, so never claim it was sent —
+    // say what should have happened and offer a route out if nothing did.
+    msg.classList.add("ok");
+    msg.textContent = t("contact.f.mailto", lang) + " ";
+    addLink("mailto:" + CONFIG.email, "contact.f.mailtoDirect", lang, false);
+    addLink(WA_LINK + "?text=" + encodeURIComponent(lines.join("\n")), "contact.f.mailtoWa", lang, true);
   });
 }
 

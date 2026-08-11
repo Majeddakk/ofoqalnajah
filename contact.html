@@ -49,51 +49,55 @@
   </section>
 
   <section class="section">
-    <div class="container">
-      <div class="form-wrap">
-        <!-- FORM -->
-        <div class="reveal">
-          <span class="kicker" data-i18n="contact.form.kicker">Send a Message</span>
-          <h2 style="margin-bottom:1.4rem" data-i18n="contact.form.title">Book your free consultation</h2>
-          <form id="contactForm" class="form" novalidate>
-            <div class="form-msg" role="status" aria-live="polite"></div>
-            <div class="field">
-              <label for="name" data-i18n="contact.f.name">Full Name</label>
-              <input type="text" id="name" name="name" required autocomplete="name" data-i18n-ph="contact.f.name.ph" placeholder="Your name">
-            </div>
-            <div class="field">
-              <label for="email" data-i18n="contact.f.email">Email</label>
-              <input type="email" id="email" name="email" required autocomplete="email" data-i18n-ph="contact.f.email.ph" placeholder="you@example.com">
-            </div>
-            <div class="field">
-              <label for="phone" data-i18n="contact.f.phone">Phone / WhatsApp</label>
-              <input type="tel" id="phone" name="phone" dir="ltr" autocomplete="tel" data-i18n-ph="contact.f.phone.ph" placeholder="+971 …">
-            </div>
-            <div class="field">
-              <label for="interest" data-i18n="contact.f.interest">I'm interested in</label>
-              <select id="interest" name="interest" autocomplete="off">
-                <option value="Investment Advisory" data-i18n="contact.f.opt1">Investment Advisory</option>
-                <option value="Commodities &amp; Timing" data-i18n="contact.f.opt2">Commodities &amp; Timing</option>
-                <option value="Training &amp; Courses" data-i18n="contact.f.opt3">Training &amp; Courses</option>
-                <option value="Something else" data-i18n="contact.f.opt4">Something else</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="message" data-i18n="contact.f.msg">Message</label>
-              <textarea id="message" name="message" required data-i18n-ph="contact.f.msg.ph" placeholder="Tell us a little about your goals…"></textarea>
-            </div>
-            <!-- honeypot (spam protection) -->
-            <input type="checkbox" name="botcheck" class="hide" style="display:none" tabindex="-1" autocomplete="off">
-            <button type="submit" class="btn btn-navy btn-lg" data-i18n="contact.f.submit">Send Message</button>
-            <p class="form-note" data-i18n="contact.f.note">By sending, you agree to be contacted about your enquiry. We never share your details.</p>
-          </form>
+    <div class="container container-narrow">
+      <div class="section-head reveal">
+        <span class="kicker" data-i18n="contact.form.kicker">Send a Message</span>
+        <h2 data-i18n="contact.form.title">Tell us what you need</h2>
+        <div class="divider"><span></span><i></i><span></span></div>
+        <p data-i18n="contact.form.p">Fill this in and hit send — it opens your email app with everything already written, ready for you to send.</p>
+      </div>
+      <form id="contactForm" class="form reveal" novalidate>
+        <div class="form-msg" role="status" aria-live="polite"></div>
+        <div class="field">
+          <label for="name" data-i18n="contact.f.name">Full Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" data-i18n-ph="contact.f.name.ph" placeholder="Your name">
         </div>
+        <div class="field">
+          <label for="email" data-i18n="contact.f.email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" data-i18n-ph="contact.f.email.ph" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="phone" data-i18n="contact.f.phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" name="phone" dir="ltr" autocomplete="tel" data-i18n-ph="contact.f.phone.ph" placeholder="+971 …">
+        </div>
+        <div class="field">
+          <label for="interest" data-i18n="contact.f.interest">I'm interested in</label>
+          <select id="interest" name="interest" autocomplete="off">
+            <option value="Investment Advisory" data-i18n="contact.f.opt1">Investment Advisory</option>
+            <option value="Commodities &amp; Timing" data-i18n="contact.f.opt2">Commodities &amp; Timing</option>
+            <option value="Training &amp; Courses" data-i18n="contact.f.opt3">Training &amp; Courses</option>
+            <option value="Something else" data-i18n="contact.f.opt4">Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message" data-i18n="contact.f.msg">Message</label>
+          <textarea id="message" name="message" required data-i18n-ph="contact.f.msg.ph" placeholder="Tell us a little about your goals…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-navy btn-lg" data-i18n="contact.f.submit">Send Message</button>
+        <p class="form-note" data-i18n="contact.f.note">This opens your own email app so you can review the message before sending. We never share your details.</p>
+      </form>
+    </div>
+  </section>
 
-        <!-- INFO -->
-        <div class="reveal">
-          <span class="kicker" data-i18n="contact.info.kicker">Other Ways</span>
-          <h2 style="margin-bottom:1.4rem" data-i18n="contact.info.title">Reach us directly</h2>
-          <div class="contact-info">
+  <section class="section section-alt">
+    <div class="container container-narrow">
+      <div class="section-head reveal">
+        <span class="kicker" data-i18n="contact.info.kicker">Get in Touch</span>
+        <h2 data-i18n="contact.info.title">Reach us directly</h2>
+        <div class="divider"><span></span><i></i><span></span></div>
+        <p data-i18n="contact.info.p">Message us, call us, or drop us an email — whichever suits you. We usually reply within one business day.</p>
+      </div>
+      <div class="contact-info reveal">
             <div class="contact-card">
               <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2z"/></svg></div>
               <div><b data-i18n="contact.info.wa">WhatsApp</b><a data-contact="wa" href="https://wa.me/96179184841" target="_blank" rel="noopener" dir="ltr">+961 79 184 841</a></div>
@@ -110,8 +114,11 @@
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
               <div><b data-i18n="contact.info.hours">Working Hours</b><span data-i18n="contact.info.hours.v">Mon – Fri, 9:00 – 18:00</span></div>
             </div>
-          </div>
-        </div>
+      </div>
+
+      <div class="contact-cta reveal">
+        <a class="btn btn-gold btn-lg" href="https://wa.me/96179184841" target="_blank" rel="noopener" data-i18n="contact.cta.wa">Message us on WhatsApp</a>
+        <a class="btn btn-outline btn-lg" href="mailto:info@ofoqalnajah.finance" data-contact="email-btn" data-i18n="contact.cta.email">Send an Email</a>
       </div>
     </div>
   </section>
