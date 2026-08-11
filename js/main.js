@@ -14,9 +14,10 @@ const CONFIG = {
     { labelKey: "contact.phone.tr", display: "+90 505 795 0409", dial: "+905057950409" },
   ],
   email:        "info@ofoqalnajah.finance",
-  // Free access key from https://web3forms.com (30-sec signup with your email).
-  // Until you paste it, the contact form will show a friendly fallback to WhatsApp.
-  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
+  // Web3Forms access key — delivers the contact form to the address above.
+  // Public by design (Web3Forms keys live in client-side code); rotate it at
+  // web3forms.com if it ever attracts spam. Clear it to fall back to WhatsApp.
+  web3formsKey: "772112be-1f0e-4eb4-8185-055aeb283270",
   social: {
     instagram: "https://www.instagram.com/ofoqacademy.fx",
   },
@@ -314,12 +315,15 @@ function initForm() {
     if (!form.checkValidity()) { form.reportValidity(); return; }
     const lang = currentLang();
     const data = Object.fromEntries(new FormData(form).entries());
+    // The same enquiry, formatted for WhatsApp — used by the no-key fallback and,
+    // more importantly, to rescue a submission if the mail relay is unreachable.
+    const waText = () => `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "-"}\nInterest: ${data.interest || "-"}\n\n${data.message || ""}`;
+    const waHref = () => WA_LINK + "?text=" + encodeURIComponent(waText());
     const keyMissing = !CONFIG.web3formsKey || CONFIG.web3formsKey.startsWith("YOUR_");
     if (keyMissing) {
       // Fallback until a Web3Forms key is set: hand the enquiry off to WhatsApp, prefilled.
-      const txt = `Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "-"}\nInterest: ${data.interest || "-"}\n\n${data.message || ""}`;
       busy = true;
-      const win = window.open(WA_LINK + "?text=" + encodeURIComponent(txt), "_blank", "noopener");
+      const win = window.open(waHref(), "_blank", "noopener");
       busy = false;
       if (!win) {
         // Pop-up blocked — say so and KEEP what they typed, rather than claiming success.
@@ -347,15 +351,26 @@ function initForm() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data),
       });
-      const out = await res.json();
-      if (out.success) {
+      // A blocked or erroring relay can answer with HTML, so don't assume JSON.
+      let out = null;
+      try { out = await res.json(); } catch (_) { /* handled by the !ok check below */ }
+      if (res.ok && out && out.success) {
         form.reset();
         msg.classList.add("ok");
         msg.textContent = t("contact.f.ok", currentLang());
-      } else { throw new Error(out.message || "failed"); }
+      } else { throw new Error((out && out.message) || ("HTTP " + res.status)); }
     } catch (err) {
+      // Never leave them at a dead end: their text is preserved and this offers a
+      // one-tap WhatsApp handoff with the whole enquiry already filled in.
+      const l = currentLang();
       msg.classList.add("err");
-      msg.textContent = t("contact.f.err", currentLang());
+      msg.textContent = t("contact.f.err", l) + " ";
+      const a = document.createElement("a");
+      a.href = waHref();
+      a.target = "_blank"; a.rel = "noopener";
+      a.className = "form-msg-wa";
+      a.textContent = t("contact.f.errWaLink", l);
+      msg.appendChild(a);
     } finally {
       busy = false;
       btn.disabled = false;

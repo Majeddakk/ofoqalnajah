@@ -326,6 +326,9 @@ html:not(.js) .faq-a { max-height: none; }
 .form-msg { padding: .95rem 1.1rem; border-radius: var(--radius-sm); font-size: .95rem; display: none; }
 .form-msg.ok { display: block; background: rgba(46,150,86,.1); color: #1c7a44; border: 1px solid rgba(46,150,86,.3); }
 .form-msg.err { display: block; background: rgba(198,60,60,.09); color: #a83232; border: 1px solid rgba(198,60,60,.28); }
+/* rescue link shown when the mail relay fails — must look clearly clickable */
+.form-msg-wa { display: inline-block; margin-top: .35rem; font-weight: 600; color: #8f2626; text-decoration: underline; text-underline-offset: 3px; }
+.form-msg-wa:hover { color: var(--navy); }
 
 .contact-info { display: grid; gap: 16px; align-content: start; }
 .contact-card { display: flex; gap: 16px; align-items: flex-start; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: border-color .25s, transform .25s; }

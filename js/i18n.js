@@ -265,7 +265,8 @@ const I18N = {
     "contact.f.sending": "Sending…",
     "contact.f.note": "By sending, you agree to be contacted about your inquiry. We never share your details.",
     "contact.f.ok": "Thank you! Your message has been sent — we'll be in touch shortly.",
-    "contact.f.err": "Something went wrong. Please try again, or reach us on WhatsApp.",
+    "contact.f.err": "Something went wrong and your message wasn't sent.",
+    "contact.f.errWaLink": "Send it on WhatsApp instead →",
     "contact.f.wa": "We've opened WhatsApp with your message ready — press send there and we'll get straight back to you.",
     "contact.f.waBlocked": "Your browser blocked the WhatsApp window. Please allow pop-ups and try again, or message us directly on WhatsApp.",
     /* ---- Licence & registration ---- */
@@ -555,7 +556,8 @@ const I18N = {
     "contact.f.sending": "جارٍ الإرسال…",
     "contact.f.note": "بإرسال هذا النموذج، فإنك توافق على أن نتواصل معك بشأن استفسارك. ولن نشارك بياناتك مع أي جهة أخرى.",
     "contact.f.ok": "شكرًا لك! تم إرسال رسالتك — سنتواصل معك قريبًا.",
-    "contact.f.err": "حدث خطأ ما. يرجى المحاولة مجددًا، أو تواصل معنا عبر واتساب.",
+    "contact.f.err": "حدث خطأ ولم تُرسَل رسالتك.",
+    "contact.f.errWaLink": "أرسِلها عبر واتساب بدلاً من ذلك ←",
     "contact.f.wa": "فتحنا واتساب ورسالتك جاهزة — اضغط إرسال هناك وسنعاود التواصل معك فورًا.",
     "contact.f.waBlocked": "منع متصفّحك فتح نافذة واتساب. يرجى السماح بالنوافذ المنبثقة والمحاولة مجددًا، أو راسلنا مباشرةً عبر واتساب.",
     /* ---- الرخصة والسجل ---- */
