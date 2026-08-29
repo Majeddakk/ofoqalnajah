@@ -95,3 +95,17 @@ git push
 ```
 
 No build command needed — it's a static site (Framework Preset: **Other**).
+
+### ⚠️ If you changed `css/styles.css` or anything in `js/`
+
+Bump the version token, or returning visitors keep the old file for 24h and
+you'll see new HTML rendered against a stale stylesheet:
+
+```bash
+# bump the token to today's date (the left side is the token currently in the files):
+sed -i 's/?v=20260829a/?v=20260830a/g' *.html
+```
+
+HTML is always served fresh, but `vercel.json` caches `/css/` and `/js/` for a
+day — the token changes the URL so the new file is fetched immediately. Editing
+only HTML or images needs no bump.
