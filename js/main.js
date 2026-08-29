@@ -167,6 +167,10 @@ function applyLang(lang) {
   document.querySelectorAll("[data-i18n-alt]").forEach(el => {
     el.setAttribute("alt", t(el.getAttribute("data-i18n-alt"), lang));
   });
+  // WhatsApp links whose prefilled message follows the active language
+  document.querySelectorAll("[data-wa-text]").forEach(el => {
+    el.setAttribute("href", WA_LINK + "?text=" + encodeURIComponent(t(el.getAttribute("data-wa-text"), lang)));
+  });
 
   // The switcher shows the OTHER language, so tag it or a screen reader reads
   // "عربي" with an English voice (and "EN" with an Arabic one).

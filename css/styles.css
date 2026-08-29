@@ -311,6 +311,14 @@ html[lang="ar"] .breadcrumb { letter-spacing: 0; font-size: .92rem; text-transfo
 html:not(.js) .faq-a { max-height: none; }
 .faq-a p { padding: 0 4px 26px; color: var(--muted); margin: 0; font-size: 1.02rem; }
 
+/* ---------- Course materials panel ---------- */
+.materials { margin-top: 40px; max-width: 760px; margin-inline: auto; text-align: center; padding: clamp(28px,4vw,44px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg,#ffffff 0%,#fdfbf5 100%); box-shadow: 0 4px 18px rgba(12,26,78,.05); }
+.materials-ic { width: 54px; height: 54px; margin: 0 auto 16px; border-radius: 13px; display: grid; place-items: center; color: var(--gold-bright); background: linear-gradient(150deg, var(--navy-700) 0%, var(--navy-950) 100%); border: 1px solid rgba(201,154,56,.32); box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
+.materials-ic svg { width: 24px; height: 24px; }
+.materials h3 { font-size: 1.35rem; color: var(--navy); margin-bottom: .5rem; }
+.materials p { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 560px; margin-inline: auto; text-wrap: balance; }
+.materials-actions { display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; margin-top: 1.6rem; }
+
 /* ---------- Contact form ---------- */
 .form { display: grid; gap: 18px; max-width: 620px; margin-inline: auto; }
 .field label { display: block; font-family: var(--font-ui); font-weight: 600; font-size: .82rem; letter-spacing: .04em; color: var(--navy); margin-bottom: .5rem; text-transform: uppercase; }
